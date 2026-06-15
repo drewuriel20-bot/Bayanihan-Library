@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Libralend | Kaban ng Hiyas Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-brand" onclick="goTo('home')">
+    <div class="logo-dot"><i class="fas fa-book-open"></i></div>
+    <span class="logo-text">Libralend</span>
+  </div>
+  <div id="nav-guest" class="nav-links">
+    <button class="nav-btn" onclick="goTo('home')">Home</button>
+    <button class="nav-btn" onclick="scrollAbout()">About</button>
+    <button class="nav-btn" onclick="goTo('catalog')">Catalog</button>
+    <button class="nav-btn" onclick="goTo('login')">Log in</button>
+    <button class="nav-btn cta" onclick="goTo('register')">Join free</button>
+  </div>
+  <div id="nav-user" class="nav-user" style="display:none;">
+    <button class="nav-btn" onclick="goTo('catalog')">Catalog</button>
+    <button class="nav-btn" id="adminNavBtn" style="display:none;" onclick="goTo('admin')">Admin</button>
+    <button class="nav-btn" onclick="goTo('dashboard')">My Library</button>
+    <div class="avatar-sm" id="navAvatar">?</div>
+    <button class="nav-btn" onclick="logout()" style="color:rgba(248, 250, 252, 0.5); font-size:13px;">Sign out</button>
+  </div>
+</nav>
+
+<div id="toast"><i class="fas fa-check-circle"></i><span id="toast-msg"></span></div>
+
+<div id="page-home" class="page active">
+  <div class="hero">
+    <p class="hero-eyebrow">
+      Mandaluyong City<br>
+      Kaban ng Hiyas Library
+    </p>
+    <h1>Every book is a door. <em>Open yours.</em></h1>
+    <p>A free community lending system serving every resident — from first-time readers to lifelong scholars.</p>
+    <div class="hero-actions">
+      <button class="btn btn-gold" onclick="goTo('register')" style="padding:12px 28px; font-size:15px;">
+        <i class="fas fa-user-plus"></i> Join for free
+      </button>
+      <button class="btn btn-outline" onclick="goTo('catalog')" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:#fff; padding:12px 28px; font-size:15px;">
+        <i class="fas fa-search"></i> Browse catalog
+      </button>
+    </div>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat-item"><span class="num">2,400+</span><span class="lbl">Books in collection</span></div>
+    <div class="stat-item"><span class="num">1,100</span><span class="lbl">Active members</span></div>
+    <div class="stat-item"><span class="num">48</span><span class="lbl">New arrivals this month</span></div>
+    <div class="stat-item"><span class="num">Free</span><span class="lbl">Always & forever</span></div>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-book-open"></i></div>
+      <h3>Borrow up to 5 books</h3>
+      <p>Members can check out up to five titles at a time for 14 days, renewable once through the Libralend portal.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-bell"></i></div>
+      <h3>Hold & reserve</h3>
+      <p>Book is checked out? Place a hold and we'll notify you the moment it's ready for pick-up at Kaban ng Hiyas.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-star"></i></div>
+      <h3>Reviews & reading lists</h3>
+      <p>Rate books, leave reviews, and share curated reading lists with your neighbors in Mandaluyong.</p>
+    </div>
+  </div>
+
+  <div class="about-band" id="about-section">
+    <div class="about-inner">
+      <div>
+        <span class="serif">Our mission</span>
+        <h2>A digital bridge for Kaban ng Hiyas Library</h2>
+        <p>Libralend was developed to modernize how residents interact with the beloved Kaban ng Hiyas Library. We believe that access to books and educational resources should be seamless and equitable.</p>
+        <p>Today, our catalog houses over 2,400 titles across fiction, non-fiction, Filipino literature, and academic references — all easily searchable and free to borrow for every registered community member.</p>
+        <button class="btn btn-outline" onclick="goTo('register')" style="margin-top:0.5rem; border-color:var(--accent); color:var(--accent);">
+          <i class="fas fa-heart"></i> Become a member
+        </button>
+      </div>
+      <div>
+        <div class="hours-card">
+          <h3><i class="fas fa-clock" style="color:var(--gold); margin-right:8px;"></i>Physical Library Hours</h3>
+          <div class="hours-row"><span class="day">Monday – Friday</span><span class="time">8:00 AM – 7:00 PM</span></div>
+          <div class="hours-row"><span class="day">Saturday</span><span class="time">9:00 AM – 5:00 PM</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span class="time">10:00 AM – 3:00 PM</span></div>
+          <div class="hours-row"><span class="day">Holidays</span><span class="time">Closed</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+      <div class="footer-content">
+          <div class="footer-text">
+              <p>&copy; 2026 Libralend.</p>
+              <p class="thesis-title">"Effectiveness of Libralend as a Web-based Library Lending System for Kaban ng Hiyas Library"</p>
+              <p class="university-name">Polytechnic University of the Philippines</p>
+          </div>
+          <div class="footer-links">
+              <a href="#">Terms of Service</a>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Contact Support</a>
+          </div>
+      </div>
+  </footer>
+</div>
+
+<div id="page-login" class="page">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="logo-block">
+        <div style="font-size:2.5rem; margin-bottom:0.5rem; color: var(--accent);"><i class="fas fa-book-open"></i></div>
+        <h2>Welcome back</h2>
+        <p>Sign in to your library account</p>
+      </div>
+      <div class="form-group">
+        <label>Username or email</label>
+        <input type="text" id="login-user" placeholder="e.g. juandelacruz" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-pass" placeholder="Your password" />
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; font-size:13px;">
+        <label style="display:flex; gap:8px; align-items:center; font-size:13px; cursor:pointer; margin:0;">
+          <input type="checkbox" style="width:auto;" /> Remember me
+        </label>
+        <a href="#" style="color:var(--accent); text-decoration:none;" onclick="showToast('Password reset link sent to your email.', 'success')">Forgot password?</a>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="doLogin()">Sign in</button>
+      <hr class="divider">
+      <button class="btn btn-outline btn-full" onclick="doAdminLogin()">
+        <i class="fas fa-shield-alt"></i> Sign in as Admin (demo)
+      </button>
+      <p class="auth-switch">Don't have an account? <a onclick="goTo('register')">Create one</a></p>
+      <p style="font-size:12px; color:var(--ink-muted); text-align:center; margin-top:8px;">Demo: use any username/password</p>
+    </div>
+  </div>
+</div>
+
+<div id="page-register" class="page">
+  <div class="auth-wrap" style="padding:2rem; align-items:flex-start; padding-top:3rem;">
+    <div class="auth-card wide">
+      <div class="logo-block">
+        <div style="font-size:2.5rem; margin-bottom:0.5rem; color: var(--accent);"><i class="fas fa-book-open"></i></div>
+        <h2>Create your account</h2>
+        <p>Join Libralend — free for all residents</p>
+      </div>
+
+      <h3 style="font-size:13px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-muted); margin-bottom:1rem;">Personal information</h3>
+      <div class="form-row">
+        <div class="form-group"><label>First name *</label><input type="text" id="reg-fname" placeholder="Juan" /></div>
+        <div class="form-group"><label>Last name *</label><input type="text" id="reg-lname" placeholder="Dela Cruz" /></div>
+      </div>
+      
+      <hr class="divider">
+      <h3 style="font-size:13px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-muted); margin-bottom:1rem;">Account credentials</h3>
+      <div class="form-group"><label>Email address *</label><input type="email" id="reg-email" placeholder="juan@email.com" /></div>
+      <div class="form-row">
+        <div class="form-group"><label>Username *</label><input type="text" id="reg-uname" placeholder="juandelacruz" /></div>
+        <div class="form-group"><label>Password *</label><input type="password" id="reg-pass" placeholder="Min. 8 characters" /></div>
+      </div>
+
+      <button class="btn btn-primary btn-full" style="padding:12px; font-size:15px; margin-top:0.5rem;" onclick="doRegister()">
+        <i class="fas fa-user-plus"></i> Create account
+      </button>
+      <p class="auth-switch">Already a member? <a onclick="goTo('login')">Sign in</a></p>
+    </div>
+  </div>
+</div>
+
+<div id="page-catalog" class="page">
+  <div class="catalog-header">
+    <h2>Book catalog</h2>
+    <p>Browse our collection of 2,400+ titles</p>
+    <div class="catalog-toolbar">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="catalog-search" placeholder="Search by title, author, ISBN…" oninput="filterCatalog()">
+      </div>
+      <select class="filter-select" id="catalog-genre" onchange="filterCatalog()">
+        <option value="">All genres</option>
+        <option>Fiction</option><option>Non-fiction</option><option>Filipino Lit</option>
+        <option>Children's</option><option>History</option><option>Science</option>
+        <option>Self-Help</option><option>Mystery</option><option>Fantasy</option>
+      </select>
+      <select class="filter-select" id="catalog-avail" onchange="filterCatalog()">
+        <option value="">All availability</option>
+        <option value="available">Available now</option>
+        <option value="borrowed">Checked out</option>
+      </select>
+      <select class="filter-select" id="catalog-sort" onchange="filterCatalog()">
+        <option value="title">Sort: Title A-Z</option>
+        <option value="author">Sort: Author</option>
+        <option value="rating">Sort: Rating</option>
+        <option value="new">Sort: Newest</option>
+      </select>
+    </div>
+    <p id="catalog-count" style="font-size:13px; color:var(--ink-muted); margin-top:10px;"></p>
+  </div>
+  <div class="book-grid" id="book-grid"></div>
+</div>
+
+<div id="page-dashboard" class="page">
+  <div class="dash-wrap">
+    <aside class="dash-sidebar">
+      <div class="user-block">
+        <div class="avatar-lg" id="dashAvatar">?</div>
+        <h4 id="dashName">—</h4>
+        <p id="dashEmail">—</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a onclick="showDashSection('ds-overview')" class="active" id="sn-overview"><i class="fas fa-home"></i> Overview</a>
+        <a onclick="showDashSection('ds-borrowed')" id="sn-borrowed"><i class="fas fa-book"></i> Currently borrowed</a>
+      </nav>
+    </aside>
+
+    <main class="dash-main">
+      <div class="dash-section active" id="ds-overview">
+        <h2 class="dash-title">Good morning, <span id="dashFirst">friend</span>! 👋</h2>
+        <p class="dash-sub">Here's a snapshot of your library activity.</p>
+        <div class="stat-cards">
+          <div class="stat-card accent"><div class="sc-label">Currently borrowed</div><div class="sc-value">3</div><div class="sc-sub">of 5 slots used</div></div>
+          <div class="stat-card"><div class="sc-label">Books read total</div><div class="sc-value">27</div><div class="sc-sub">since joining</div></div>
+        </div>
+      </div>
+
+      <div class="dash-section" id="ds-borrowed">
+        <h2 class="dash-title">Currently borrowed</h2>
+        <p class="dash-sub">You have 3 books checked out. Max 5 allowed.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Book</th><th>Author</th><th>Borrowed</th><th>Due date</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Noli Me Tangere</strong></td><td>José Rizal</td><td>Jun 1, 2026</td><td>Jun 15, 2026</td><td><span class="badge badge-amber">Due soon</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Renewal confirmed!', 'success')">Renew</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div id="page-admin" class="page">
+  <div class="dash-wrap">
+    <aside class="dash-sidebar">
+      <div class="user-block">
+        <div class="avatar-lg" style="background:var(--blue);">A</div>
+        <h4>Library Admin</h4>
+        <p>admin@libralend.ph</p>
+        <p class="member-since"><span class="badge badge-blue" style="font-size:11px;">Administrator</span></p>
+      </div>
+      <nav class="sidebar-nav">
+
+
+      <script src="homepage.js"></script>
+      </body>

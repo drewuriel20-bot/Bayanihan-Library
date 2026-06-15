@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LibraLend — Sign In</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="signin.css" />
+</head>
+<body>
+
+  <div class="left-panel">
+    <div class="panel-logo">
+      <div class="panel-logo-icon">📚</div>
+      <span class="panel-logo-name">LibraLend</span>
+    </div>
+
+    <div class="panel-headline">
+      <h1>Borrow books.<br/><span>Share stories.</span><br/>Build community.</h1>
+      <p>Join thousands of readers lending and discovering books with their neighbors every day.</p>
+    </div>
+
+    <div class="book-shelf">
+      <div class="book-card">
+        <div class="book-card-title">The Midnight Library</div>
+        <div class="book-card-author">Matt Haig</div>
+        <span class="book-card-badge badge-available">Available</span>
+      </div>
+      <div class="book-card">
+        <div class="book-card-title">Educated</div>
+        <div class="book-card-author">Tara Westover</div>
+        <span class="book-card-badge badge-lent">Lent out</span>
+      </div>
+      <div class="book-card">
+        <div class="book-card-title">Pachinko</div>
+        <div class="book-card-author">Min Jin Lee</div>
+        <span class="book-card-badge badge-available">Available</span>
+      </div>
+    </div>
+
+    <div class="panel-stats">
+      <div class="stat">
+        <div class="stat-num">18k+</div>
+        <div class="stat-label">Books shared</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4,200</div>
+        <div class="stat-label">Active lenders</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">92%</div>
+        <div class="stat-label">Return rate</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="accent-strip"></div>
+
+    <div class="mobile-logo">
+      <div class="mobile-logo-icon">📚</div>
+      <span class="mobile-logo-name">LibraLend</span>
+    </div>
+
+    <div class="form-header">
+      <h2>Welcome back</h2>
+      <p>Sign in to your lending library account</p>
+    </div>
+
+    <form onsubmit="handleSignIn(event)">
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required />
+      </div>
+
+      <div class="form-row">
+        <label class="remember-me">
+          <input type="checkbox" id="remember" />
+          Remember me
+        </label>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-signin">Sign in</button>
+    </form>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-text">or continue as</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <button class="btn-guest" onclick="alert('Continuing as guest…')">Browse as Guest</button>
+
+    <div class="signup-cta">
+      New to LibraLend? <a href="#">Create an account</a>
+    </div>
+  </div>
+
+  <script>
+    function handleSignIn(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-signin');
+      btn.textContent = 'Signing in…';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Sign in';
+        btn.disabled = false;
+        alert('Sign-in successful! Welcome back to LibraLend.');
+      }, 1200);
+    }
+  </script>
+</body>
+</html>
