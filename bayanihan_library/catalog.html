@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libralend - Book Catalog</title>
+
+    <link rel="stylesheet" href="catalog.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="main-navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <div class="brand-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <span>Libralend</span>
+        </div>
+        
+        <div class="nav-links">
+            <a href="#" class="nav-item">Home</a>
+            <a href="#" class="nav-item">About</a>
+            <a href="#" class="nav-item active">Catalog</a>
+            <a href="#" class="nav-item">Log in</a>
+            <a href="#" class="btn-join">Join free</a>
+        </div>
+    </div>
+</nav>
+
+<div id="page-catalog" class="page active">
+
+    <div class="catalog-header">
+        <div class="header-badge">MANDALUYONG CITY • KABAN NG HIYAS LIBRARY</div>
+        <h2>Book catalog</h2>
+        <p>Browse our collection of 2,400+ titles</p>
+
+        <div class="catalog-toolbar">
+
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input
+                    type="text"
+                    id="catalog-search"
+                    placeholder="Search by title, author, ISBN..."
+                    oninput="filterCatalog()">
+            </div>
+
+            <div class="filters-group">
+                
+                <select class="filter-select" id="catalog-genre" onchange="filterCatalog()">
+                    <option value="">All genres</option>
+                    <option>Fiction</option>
+                    <option>Non-fiction</option>
+                    <option>Filipino Lit</option>
+                    <option>Children's</option>
+                    <option>History</option>
+                    <option>Science</option>
+                    <option>Self-Help</option>
+                    <option>Mystery</option>
+                    <option>Fantasy</option>
+                </select>
+
+                <select class="filter-select" id="catalog-avail" onchange="filterCatalog()">
+                    <option value="">All availability</option>
+                    <option value="available">Available Now</option>
+                    <option value="borrowed">Checked Out</option>
+                </select>
+
+                <select class="filter-select" id="catalog-sort" onchange="filterCatalog()">
+                    <option value="title">Sort: Title A-Z</option>
+                    <option value="author">Sort: Author</option>
+                    <option value="rating">Sort: Rating</option>
+                    <option value="new">Sort: Newest</option>
+                </select>
+
+            </div>
+
+        </div>
+
+        <p id="catalog-count" class="results-count">15 books found</p>
+
+    </div>
+
+    <div class="book-grid" id="book-grid">
+
+        <div class="book-card">
+            <div class="book-cover">
+                <span class="avail-badge available">Available</span>
+                <i class="fas fa-book" style="color: #3b82f6;"></i>
+            </div>
+            <div class="book-info">
+                <h4>Noli Me Tangere</h4>
+                <div class="author">José Rizal</div>
+                <span class="genre-tag">Filipino Lit</span>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-cover">
+                <span class="avail-badge checked-out">Checked out</span>
+                <i class="fas fa-book" style="color: #ec4899;"></i>
+            </div>
+            <div class="book-info">
+                <h4>El Filibusterismo</h4>
+                <div class="author">José Rizal</div>
+                <span class="genre-tag">Filipino Lit</span>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-cover">
+                <span class="avail-badge available">Available</span>
+                <i class="fas fa-book" style="color: #f97316;"></i>
+            </div>
+            <div class="book-info">
+                <h4>Florante at Laura</h4>
+                <div class="author">Francisco Balagtas</div>
+                <span class="genre-tag">Filipino Lit</span>
+            </div>
+        </div>
+
+        <div class="book-card">
+            <div class="book-cover">
+                <span class="avail-badge available">Available</span>
+                <i class="fas fa-book" style="color: #10b981;"></i>
+            </div>
+            <div class="book-info">
+                <h4>Ibong Adarna</h4>
+                <div class="author">Anonymous</div>
+                <span class="genre-tag">Filipino Lit</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

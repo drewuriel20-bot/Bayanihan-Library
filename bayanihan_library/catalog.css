@@ -1,0 +1,328 @@
+/* ==========================================
+   GLOBAL STYLES & VARIABLES
+   ========================================== */
+:root {
+    --nav-bg: #1a2e69;          /* Sleek corporate blue for top navbar */
+    --hero-bg: #111e47;         /* Deep navy background for the main header block */
+    --accent-orange: #e67e22;   /* The bright, vivid orange accent color */
+    --bg-light: #f8fafc;        /* Clean, ice-white background for the grid area */
+    --bg-white: #ffffff;
+    --border: #e2e8f0;          /* Soft modern gray border */
+    
+    /* Text Colors */
+    --ink-dark: #111e47;        /* Deep navy for secondary page headings */
+    --ink-muted: #64748b;       /* Slate gray for lower counts/subtext */
+    --ink-light: #ffffff;       /* Pure white text for dark blocks */
+    --ink-light-muted: #94a3b8; /* Muted soft blue-gray text for dark blocks */
+    
+    --radius-pill: 30px;
+    --radius-lg: 16px;
+    --side-padding: 10%;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--ink-dark);
+}
+
+/* ==========================================
+   MAIN UPPER NAVBAR
+   ========================================== */
+.main-navbar {
+    background-color: var(--nav-bg);
+    padding: 0.8rem var(--side-padding);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo Alignment */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.brand-icon {
+    background-color: var(--accent-orange);
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #ffffff;
+}
+
+/* Links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-item {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: #ffffff;
+}
+
+/* Orange Pill CTA Button */
+.btn-join {
+    background-color: var(--accent-orange);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: var(--radius-pill);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.btn-join:hover {
+    opacity: 0.9;
+}
+
+/* ==========================================
+   CATALOG HERO BLOCK (Deep Navy + Stripes)
+   ========================================== */
+.catalog-header {
+    background-color: var(--hero-bg);
+    /* Creates the diagonal stripe texture effect dynamically from your image */
+    background-image: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.02) 25%, 
+        transparent 25%, 
+        transparent 50%, 
+        rgba(255, 255, 255, 0.02) 50%, 
+        rgba(255, 255, 255, 0.02) 75%, 
+        transparent 75%, 
+        transparent
+    );
+    background-size: 40px 40px;
+    padding: 3.5rem var(--side-padding) 2.5rem var(--side-padding);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.header-badge {
+    color: var(--ink-light-muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+}
+
+.catalog-header h2 {
+    font-size: 2.5rem;
+    font-family: 'Georgia', serif;
+    font-weight: 600;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+}
+
+.catalog-header p {
+    font-size: 1.05rem;
+    color: var(--ink-light-muted);
+}
+
+/* ==========================================
+   TOOLBAR FORM ELEMENTS
+   ========================================== */
+.catalog-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+/* Full Width Input Pill */
+.search-box {
+    display: flex;
+    align-items: center;
+    background: var(--bg-white);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-pill);
+    padding: 0 20px;
+    gap: 12px;
+    height: 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.search-box i {
+    color: #94a3b8;
+    font-size: 16px;
+}
+
+.search-box input {
+    border: none;
+    background: none;
+    width: 100%;
+    height: 100%;
+    font-size: 15px;
+    color: #111e47;
+}
+
+.search-box input:focus {
+    outline: none;
+}
+
+/* Sub-row Dropdowns Alignment */
+.filters-group {
+    display: flex;
+    gap: 14px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.filters-group .filter-select {
+    flex: 1;
+    min-width: 160px;
+}
+
+.filter-select {
+    height: 48px;
+    padding: 0 22px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-pill);
+    font-size: 15px;
+    background: var(--bg-white);
+    color: #111e47;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 12px;
+}
+
+.filter-select:focus {
+    outline: none;
+}
+
+.results-count {
+    font-size: 14px; 
+    color: var(--ink-light-muted); 
+    margin-top: 24px;
+}
+
+/* ==========================================
+   BOOK GRID CANVAS (Lower Section)
+   ========================================== */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2.5rem;
+    padding: 4rem var(--side-padding);
+}
+
+.book-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(17, 30, 71, 0.06);
+}
+
+/* Pale Ice-Blue Tint for upper cover block */
+.book-cover {
+    height: 190px;
+    background-color: #f1f5f9; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+}
+
+.book-cover i {
+    font-size: 3.8rem;
+}
+
+/* Status Badges */
+.book-cover .avail-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 5px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.avail-badge.available {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.avail-badge.checked-out {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Typography Container */
+.book-info {
+    padding: 1.4rem;
+    background: var(--bg-white);
+    flex-grow: 1;
+}
+
+.book-info h4 {
+    font-size: 1.05rem;
+    color: var(--ink-dark);
+    margin: 0 0 4px 0;
+    font-weight: 600;
+}
+
+.book-info .author {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-bottom: 14px;
+}
+
+/* Lower Genre Pill Tag */
+.genre-tag {
+    display: inline-block;
+    font-size: 11px;
+    background-color: #e2e8f0;
+    color: #475569;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-weight: 500;
+}   
