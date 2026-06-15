@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LibraLend — Sign In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #1A2E4A;
+      --blue:      #2563EB;
+      --blue-mid:  #1E4DB7;
+      --sky:       #DBEAFE;
+      --yellow:    #FBBF24;
+      --yellow-lt: #FEF3C7;
+      --white:     #FFFFFF;
+      --gray:      #64748B;
+      --gray-lt:   #F1F5F9;
+      --error:     #DC2626;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--navy);
+    }
+
+    /* ── LEFT PANEL ── */
+    .left-panel {
+      display: none;
+      flex: 1;
+      background: linear-gradient(160deg, var(--blue-mid) 0%, var(--navy) 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 48px;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @media (min-width: 900px) {
+      .left-panel { display: flex; }
+    }
+
+    /* Decorative circles */
+    .left-panel::before,
+    .left-panel::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.12;
+      background: var(--yellow);
+    }
+    .left-panel::before {
+      width: 420px; height: 420px;
+      bottom: -100px; left: -120px;
+    }
+    .left-panel::after {
+      width: 280px; height: 280px;
+      top: -60px; right: -80px;
+    }
+
+    .panel-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1;
+    }
+
+    .panel-logo-icon {
+      width: 36px; height: 36px;
+      background: var(--yellow);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+
+    .panel-logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+
+    .panel-headline {
+      z-index: 1;
+    }
+
+    .panel-headline h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .panel-headline h1 span {
+      color: var(--yellow);
+    }
+
+    .panel-headline p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 320px;
+    }
+
+    .panel-stats {
+      display: flex;
+      gap: 32px;
+      z-index: 1;
+    }
+
+    .stat {
+      border-top: 2px solid var(--yellow);
+      padding-top: 12px;
+    }
+
+    .stat-num {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 2px;
+    }
+
+    /* Floating book cards */
+    .book-shelf {
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .book-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 12px 16px;
+      width: 170px;
+      backdrop-filter: blur(6px);
+      transition: transform 0.3s ease;
+    }
+
+    .book-card:hover { transform: translateX(-4px); }
+
+    .book-card-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .book-card-author {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 2px;
+    }
+
+    .book-card-badge {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .badge-available { background: #D1FAE5; color: #065F46; }
+    .badge-lent      { background: var(--yellow-lt); color: #92400E; }
+
+    /* ── RIGHT PANEL (form) ── */
+    .right-panel {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 40px;
+    }
+
+    @media (min-width: 900px) {
+      .right-panel {
+        width: 440px;
+        flex-shrink: 0;
+        margin: 0;
+      }
+    }
+
+    .mobile-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 900px) {
+      .mobile-logo { display: none; }
+    }
+
+    .mobile-logo-icon {
+      width: 32px; height: 32px;
+      background: var(--blue);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+
+    .mobile-logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--navy);
+    }
+
+    .form-header {
+      margin-bottom: 36px;
+    }
+
+    .form-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .form-header p {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 7px;
+      letter-spacing: 0.2px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      color: var(--navy);
+      background: var(--gray-lt);
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--blue);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      margin-top: -8px;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: var(--gray);
+      cursor: pointer;
+    }
+
+    .remember-me input[type="checkbox"] {
+      width: 15px; height: 15px;
+      accent-color: var(--blue);
+      cursor: pointer;
+    }
+
+    .forgot-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .forgot-link:hover { text-decoration: underline; }
+
+    .btn-signin {
+      width: 100%;
+      padding: 13px;
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      letter-spacing: 0.2px;
+    }
+
+    .btn-signin:hover {
+      background: var(--blue-mid);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-signin:active { transform: scale(0.99); }
+
+    /* Yellow accent divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1.5px;
+      background: #E2E8F0;
+    }
+
+    .divider-text {
+      font-size: 12px;
+      color: var(--gray);
+      white-space: nowrap;
+    }
+
+    .btn-guest {
+      width: 100%;
+      padding: 12px;
+      background: var(--yellow-lt);
+      color: var(--navy);
+      border: 1.5px solid var(--yellow);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-guest:hover { background: #FDE68A; }
+
+    .signup-cta {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .signup-cta a {
+      color: var(--blue);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .signup-cta a:hover { text-decoration: underline; }
+
+    /* Yellow accent strip at the top of right panel */
+    .accent-strip {
+      height: 4px;
+      background: linear-gradient(90deg, var(--yellow) 0%, var(--blue) 100%);
+      border-radius: 4px 4px 0 0;
+      position: absolute;
+      top: 0; left: 0; right: 0;
+    }
+
+    .right-panel { position: relative; }
+  </style>
+</head>
+<body>
+
+  <!-- LEFT BRANDING PANEL -->
+  <div class="left-panel">
+    <div class="panel-logo">
+      <div class="panel-logo-icon">📚</div>
+      <span class="panel-logo-name">LibraLend</span>
+    </div>
+
+    <div class="panel-headline">
+      <h1>Borrow books.<br/><span>Share stories.</span><br/>Build community.</h1>
+      <p>Join thousands of readers lending and discovering books with their neighbors every day.</p>
+    </div>
+
+    <div class="book-shelf">
+      <div class="book-card">
+        <div class="book-card-title">The Midnight Library</div>
+        <div class="book-card-author">Matt Haig</div>
+        <span class="book-card-badge badge-available">Available</span>
+      </div>
+      <div class="book-card">
+        <div class="book-card-title">Educated</div>
+        <div class="book-card-author">Tara Westover</div>
+        <span class="book-card-badge badge-lent">Lent out</span>
+      </div>
+      <div class="book-card">
+        <div class="book-card-title">Pachinko</div>
+        <div class="book-card-author">Min Jin Lee</div>
+        <span class="book-card-badge badge-available">Available</span>
+      </div>
+    </div>
+
+    <div class="panel-stats">
+      <div class="stat">
+        <div class="stat-num">18k+</div>
+        <div class="stat-label">Books shared</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4,200</div>
+        <div class="stat-label">Active lenders</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">92%</div>
+        <div class="stat-label">Return rate</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT FORM PANEL -->
+  <div class="right-panel">
+    <div class="accent-strip"></div>
+
+    <!-- Mobile-only logo -->
+    <div class="mobile-logo">
+      <div class="mobile-logo-icon">📚</div>
+      <span class="mobile-logo-name">LibraLend</span>
+    </div>
+
+    <div class="form-header">
+      <h2>Welcome back</h2>
+      <p>Sign in to your lending library account</p>
+    </div>
+
+    <form onsubmit="handleSignIn(event)">
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required />
+      </div>
+
+      <div class="form-row">
+        <label class="remember-me">
+          <input type="checkbox" id="remember" />
+          Remember me
+        </label>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-signin">Sign in</button>
+    </form>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-text">or continue as</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <button class="btn-guest" onclick="alert('Continuing as guest…')">Browse as Guest</button>
+
+    <div class="signup-cta">
+      New to LibraLend? <a href="#">Create an account</a>
+    </div>
+  </div>
+
+  <script>
+    function handleSignIn(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-signin');
+      btn.textContent = 'Signing in…';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Sign in';
+        btn.disabled = false;
+        alert('Sign-in successful! Welcome back to LibraLend.');
+      }, 1200);
+    }
+  </script>
+</body>
+</html>
