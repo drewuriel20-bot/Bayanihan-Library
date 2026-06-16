@@ -117,38 +117,98 @@
   </footer>
 </div>
 
+<!-- ================================ PAGE: LOGIN ================================ -->
 <div id="page-login" class="page">
-  <div class="auth-wrap">
-    <div class="auth-card">
-      <div class="logo-block">
-        <div style="font-size:2.5rem; margin-bottom:0.5rem; color: var(--accent);"><i class="fas fa-book-open"></i></div>
-        <h2>Welcome back</h2>
-        <p>Sign in to your library account</p>
+  <div class="login-split-container">
+    
+    <!-- LEFT BRANDING PANEL -->
+    <div class="login-left-panel">
+      <div class="panel-headline">
+        <h1>Borrow books.<br/><span>Share stories.</span><br/>Build community.</h1>
+        <p>Join thousands of readers in Mandaluyong lending and discovering books with their neighbors every day.</p>
       </div>
-      <div class="form-group">
-        <label>Username or email</label>
-        <input type="text" id="login-user" placeholder="e.g. juandelacruz" />
+
+      <div class="book-shelf">
+        <div class="book-card-floating">
+          <div class="book-card-title">Noli Me Tangere</div>
+          <div class="book-card-author">José Rizal</div>
+          <span class="book-card-badge badge-available">Available</span>
+        </div>
+        <div class="book-card-floating">
+          <div class="book-card-title">Sapiens</div>
+          <div class="book-card-author">Yuval Noah Harari</div>
+          <span class="book-card-badge badge-lent">Lent out</span>
+        </div>
+        <div class="book-card-floating">
+          <div class="book-card-title">The Alchemist</div>
+          <div class="book-card-author">Paulo Coelho</div>
+          <span class="book-card-badge badge-available">Available</span>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" id="login-pass" placeholder="Your password" />
+
+      <div class="panel-stats">
+        <div class="stat">
+          <div class="stat-num">2,400+</div>
+          <div class="stat-label">Books in collection</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1,100</div>
+          <div class="stat-label">Active members</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Free for residents</div>
+        </div>
       </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; font-size:13px;">
-        <label style="display:flex; gap:8px; align-items:center; font-size:13px; cursor:pointer; margin:0;">
-          <input type="checkbox" style="width:auto;" /> Remember me
-        </label>
-        <a href="#" style="color:var(--accent); text-decoration:none;" onclick="showToast('Password reset link sent to your email.', 'success')">Forgot password?</a>
-      </div>
-      <button class="btn btn-primary btn-full" onclick="doLogin()">Sign in</button>
-      <hr class="divider">
-      <button class="btn btn-outline btn-full" onclick="doAdminLogin()">
-        <i class="fas fa-shield-alt"></i> Sign in as Admin (demo)
-      </button>
-      <p class="auth-switch">Don't have an account? <a onclick="goTo('register')">Create one</a></p>
     </div>
+
+    <!-- RIGHT FORM PANEL -->
+    <div class="login-right-panel">
+      <div class="accent-strip"></div>
+      
+      <div class="form-header">
+        <h2>Welcome back</h2>
+        <p>Sign in to your Kaban ng Hiyas account</p>
+      </div>
+
+      <div class="form-group">
+        <label for="login-user">Username or Email</label>
+        <!-- Re-used your system's ID: login-user -->
+        <input type="text" id="login-user" placeholder="you@example.com" />
+      </div>
+
+      <div class="form-group">
+        <label for="login-pass">Password</label>
+        <input type="password" id="login-pass" placeholder="Enter your password" />
+      </div>
+
+      <div class="form-row" style="margin-bottom: 24px; margin-top: -8px;">
+        <label class="remember-me">
+          <input type="checkbox" id="remember" /> Remember me
+        </label>
+        <a href="#" class="forgot-link" onclick="showToast('Password reset link sent to your email.', 'success')">Forgot password?</a>
+      </div>
+
+      <!-- Uses your system's doLogin() function -->
+      <button id="login-btn" class="btn-signin" onclick="doLogin()">Sign in</button>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">or continue as</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <button class="btn-guest" onclick="doAdminLogin()">Sign in as Admin (Demo)</button>
+
+      <div class="signup-cta">
+        New to Libralend? <a href="#" onclick="goTo('register')">Create an account</a>
+      </div>
+    </div>
+    
   </div>
 </div>
 
+<!-- ================================ PAGE: REGISTER ================================ -->
 <div id="page-register" class="page">
   <div class="auth-wrap" style="padding:2rem; align-items:flex-start; padding-top:3rem;">
     <div class="auth-card wide">
