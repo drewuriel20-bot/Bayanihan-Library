@@ -174,7 +174,199 @@
           </div>
         </div>
       </div>
+      <div class="modal-footer<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bayanihan Library - Admin</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="catalogcomp.css">
+</head>
+<body>
+
+  <nav id="nav">
+    <div class="nav-brand">
+      <div class="logo-dot">📚</div>
+      Bayanihan Library
+    </div>
+    <div class="nav-user">
+      <button class="nav-btn">Catalog</button>
+      <button class="nav-btn active">Admin</button>
+      <button class="nav-btn">My Library</button>
+      <div class="avatar-sm">A</div>
+      <button class="nav-btn signout-btn">Sign out</button>
+    </div>
+  </nav>
+
+  <div class="dash-wrap">
+    
+    <aside class="dash-sidebar">
+      <div class="user-block">
+        <div class="avatar-lg">A</div>
+        <h4>Library Admin</h4>
+        <p class="admin-email">admin@bayanihanlib.ph</p>
+        <span class="role-badge">Administrator</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a id="link-overview" onclick="switchAdminTab('overview')"><i class="fas fa-th-large"></i> Overview</a>
+        <a id="link-books" class="active" onclick="switchAdminTab('books')"><i class="fas fa-book"></i> Manage books</a>
+        <a id="link-borrowed" onclick="switchAdminTab('borrowed')"><i class="fas fa-exchange-alt"></i> Borrowed books</a>
+        <a id="link-members" onclick="switchAdminTab('members')"><i class="fas fa-users"></i> Members</a>
+        <a id="link-holds" onclick="switchAdminTab('holds')"><i class="fas fa-clock"></i> Holds queue</a>
+        <a id="link-reports" onclick="switchAdminTab('reports')"><i class="fas fa-chart-bar"></i> Reports</a>
+      </nav>
+    </aside>
+
+    <main class="dash-main">
+      
+      <section id="admin-books" class="tab-content active">
+        <div class="panel-header">
+          <div>
+            <h1 class="dash-title">Manage books</h1>
+            <p class="dash-sub">Add, edit, or remove books from the catalog.</p>
+          </div>
+          <button class="btn btn-primary" onclick="openAddBookModal()">
+            <i class="fas fa-plus"></i> Add new book
+          </button>
+        </div>
+
+        <div class="toolbar-stack">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="catalog-search" placeholder="Search catalog..." onkeyup="filterBooksTable()">
+          </div>
+          <select id="genre-filter" class="filter-select" onchange="filterBooksTable()">
+            <option value="All genres">All genres</option>
+            <option value="Filipino Lit">Filipino Lit</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Non-fiction">Non-fiction</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Self-Help">Self-Help</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Year</th>
+                <th>Copies</th>
+                <th>Available</th>
+                <th>Status</th>
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-books-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="admin-borrowed" class="tab-content">
+        <div class="panel-header">
+          <div>
+            <h1 class="dash-title">Borrowed books</h1>
+            <p class="dash-sub">Track real-time circulation, checkouts, updates, and overdue logs.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Txn ID</th>
+                <th>Member Name</th>
+                <th>Book Title</th>
+                <th>Borrow Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-borrowed-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="admin-fallback" class="tab-content">
+        <div class="panel-header">
+          <div>
+            <h1 id="fallback-title" class="dash-title">Panel View</h1>
+            <p class="dash-sub">This system view dashboard layout is currently under construction.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div id="bookModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="bookModalTitle">Add New Catalog Title</h3>
+        <button class="modal-close" onclick="closeBookModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="modal-book-id">
+        <div class="form-group">
+          <label>Book Title *</label>
+          <input type="text" id="modal-book-title" required>
+        </div>
+        <div class="form-group">
+          <label>Author *</label>
+          <input type="text" id="modal-book-author" required>
+        </div>
+        <div class="form-row-3">
+          <div class="form-group">
+            <label>Genre</label>
+            <select id="modal-book-genre">
+              <option value="Filipino Lit">Filipino Lit</option>
+              <option value="Fiction">Fiction</option>
+              <option value="Non-fiction">Non-fiction</option>
+              <option value="Fantasy">Fantasy</option>
+              <option value="Self-Help">Self-Help</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Pub Year</label>
+            <input type="number" id="modal-book-year" value="2026">
+          </div>
+          <div class="form-group">
+            <label>Total Copies</label>
+            <input type="number" id="modal-book-copies" value="1" min="0" oninput="syncAvailableMax()">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Available Copies</label>
+            <input type="number" id="modal-book-available" value="1" min="0">
+          </div>
+          <div class="form-group">
+            <label>Status Policy</label>
+            <select id="modal-book-status">
+              <option value="Available">Available</option>
+              <option value="Unavailable">Unavailable</option>
+            </select>
+          </div>
+        </div>
+      </div>
       <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeBookModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveBookData()">Save Asset Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="catalogcomp.js"></script>
+</body>
+</html>">
         <button class="btn btn-outline" onclick="closeBookModal()">Cancel</button>
         <button class="btn btn-primary" onclick="saveBookData()">Save Asset Changes</button>
       </div>

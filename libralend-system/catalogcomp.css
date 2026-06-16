@@ -36,9 +36,17 @@ body {
   font-size: 14px;
 }
 
+/* --- TAB CONTENT CONTROLLERS --- */
+.tab-content {
+  display: none; /* Hide all views by default */
+}
+.tab-content.active {
+  display: block; /* Show only active views */
+}
+
 /* --- TOP GLOBAL NAVIGATION --- */
 #nav {
-  background-color: #1b264f; /* Updated from deep brown to Libralend navy */
+  background-color: #1b264f; 
   color: #fff;
   height: 64px;
   padding: 0 2rem;
@@ -69,7 +77,7 @@ body {
 .nav-btn.signout-btn:hover { color: #ff6b6b; }
 .avatar-sm {
   width: 32px; height: 32px; border-radius: 50%;
-  background-color: var(--gold); color: #0f172a; /* Dark text on gold accent */
+  background-color: var(--gold); color: #0f172a;
   display: flex; align-items: center; justify-content: center;
   font-weight: 600; font-size: 13px; margin: 0 4px;
 }
@@ -102,7 +110,7 @@ body {
 .user-block h4 { font-size: 15px; font-weight: 600; color: var(--ink); }
 .admin-email { font-size: 12px; color: var(--ink-muted); margin-bottom: 0.75rem; }
 .role-badge {
-  background-color: #e0f2fe; color: #0369a1; /* Light sky blue background for premium tag look */
+  background-color: #e0f2fe; color: #0369a1;
   font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px;
 }
 .sidebar-nav { display: flex; flex-direction: column; width: 100%; }
@@ -137,7 +145,7 @@ body {
 }
 .btn-primary { 
   background-color: var(--gold); 
-  color: #0f172a; /* Dark bold text for accessibility on the gold brand buttons */
+  color: #0f172a; 
   font-weight: 600;
 }
 .btn-primary:hover { background-color: var(--gold-hover); }
@@ -173,7 +181,7 @@ body {
 .table-wrap { width: 100%; overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; text-align: left; }
 thead th {
-  background-color: #f1f5f9; /* Adjusted to cool gray-blue table striping */
+  background-color: #f1f5f9; 
   color: var(--ink-soft);
   font-size: 11px; font-weight: 600; text-transform: uppercase;
   letter-spacing: 0.06em; padding: 12px 16px;
@@ -210,7 +218,7 @@ label { display: block; font-size: 12px; font-weight: 600; color: var(--ink-soft
 /* --- MODAL BASELAYERS --- */
 .modal-overlay {
   display: none; position: fixed; inset: 0;
-  background: rgba(13, 27, 42, 0.4); z-index: 200; /* Subtle semi-transparent navy backdrop overlay */
+  background: rgba(13, 27, 42, 0.4); z-index: 200; 
   align-items: center; justify-content: center; padding: 1rem;
 }
 .modal-overlay.open { display: flex; }

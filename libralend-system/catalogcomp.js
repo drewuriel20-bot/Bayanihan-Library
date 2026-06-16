@@ -19,21 +19,29 @@ let borrowTransactions = [
 function switchAdminTab(targetTab) {
   // Update sidebar highlighting
   document.querySelectorAll('.sidebar-nav a').forEach(el => el.classList.remove('active'));
-  if (event) event.currentTarget.classList.add('active');
   
-  // Toggle layout sections
+  const activeLink = document.getElementById(`link-${targetTab}`);
+  if (activeLink) activeLink.classList.add('active');
+  
+  // Hide all panels
   document.querySelectorAll('.tab-content').forEach(panel => panel.classList.remove('active'));
   
-  const targetPanel = document.getElementById(`admin-${targetTab}`);
-  if (targetPanel) {
-    targetPanel.classList.add('active');
-  } else {
-    // Fallback if tab view isn't fully created yet
+  // Switch view handling
+  if (targetTab === 'books') {
     document.getElementById('admin-books').classList.add('active');
+    renderAdminBooks(catalogBooks);
+  } else if (targetTab === 'borrowed') {
+    document.getElementById('admin-borrowed').classList.add('active');
+    renderAdminBorrowedLogs();
+  } else {
+    // Dynamic placeholder for fallback tabs
+    const fallbackPanel = document.getElementById('admin-fallback');
+    const fallbackTitle = document.getElementById('fallback-title');
+    if (fallbackPanel && fallbackTitle) {
+      fallbackTitle.innerText = targetTab.charAt(0).toUpperCase() + targetTab.slice(1);
+      fallbackPanel.classList.add('active');
+    }
   }
-  
-  if (targetTab === 'books') renderAdminBooks(catalogBooks);
-  if (targetTab === 'borrowed') renderAdminBorrowedLogs();
 }
 
 // --- RENDERING MANAGER: BOOKS TABLE ---
@@ -45,8 +53,8 @@ function renderAdminBooks(dataset) {
     const statusClass = book.status === 'Available' ? 'badge-green' : 'badge-red';
     return `
       <tr>
-        <td style="font-weight: 600; color: #000;">${book.title}</td>
-        <td style="color: #444;">${book.author}</td>
+        <td style="font-weight: 600; color: var(--ink);">${book.title}</td>
+        <td style="color: var(--ink-soft);">${book.author}</td>
         <td><span class="badge badge-genre">${book.genre}</span></td>
         <td>${book.year}</td>
         <td>${book.copies}</td>
@@ -100,7 +108,7 @@ function renderAdminBorrowedLogs() {
         <td><span class="badge ${badgeStyle}">${tx.status}</span></td>
         <td class="text-right">
           ${tx.status !== 'Returned' ? 
-            `<button class="btn btn-outline btn-sm" onclick="processReturn('${tx.id}')">Process Return</button>` : 
+            `<button class="btn btn-outline" style="padding: 4px 10px; font-size: 12px;" onclick="processReturn('${tx.id}')">Process Return</button>` : 
             `<span style="color:var(--ink-muted); font-size:12px;">Closed</span>`
           }
         </td>
@@ -144,9 +152,8 @@ function closeBookModal() {
 }
 
 function syncAvailableMax() {
-  // Front-end constraint validator helper
   const total = document.getElementById('modal-book-copies').value;
-  document.getElementById('modal-book-available').maxValue = total;
+  document.getElementById('modal-book-available').max = total;
 }
 
 function saveBookData() {
