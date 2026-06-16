@@ -222,3 +222,100 @@ tbody td { padding: 12px 14px; border-bottom: 1px solid var(--border); }
   .book-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
   .footer-content { flex-direction: column; }
 }
+/* ============================================================
+   NEW SIGN-IN SPLIT LAYOUT (Groupmate Integration)
+   ============================================================ */
+.login-split-container {
+  display: flex;
+  min-height: calc(100vh - 60px); /* Adjusts for the sticky navbar */
+  background-color: var(--ink);
+}
+
+/* ── LEFT PANEL ── */
+.login-left-panel {
+  display: none;
+  flex: 1.2;
+  background: linear-gradient(160deg, var(--accent) 0%, var(--ink) 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 48px 60px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+}
+
+@media (min-width: 900px) {
+  .login-left-panel { display: flex; }
+}
+
+.login-left-panel::before,
+.login-left-panel::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.08;
+  background: var(--gold);
+  pointer-events: none;
+}
+.login-left-panel::before { width: 420px; height: 420px; bottom: -100px; left: -120px; }
+.login-left-panel::after { width: 280px; height: 280px; top: -60px; right: -80px; }
+
+.panel-headline h1 {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.panel-headline h1 span { color: var(--gold); }
+.panel-headline p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.7; max-width: 320px; }
+
+.panel-stats { display: flex; gap: 32px; z-index: 1; }
+.stat { border-top: 2px solid var(--gold); padding-top: 12px; }
+.stat-num { font-size: 24px; font-weight: 700; color: #fff; }
+.stat-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+
+.book-shelf { position: absolute; right: -20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; }
+.book-card-floating { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 12px 16px; width: 200px; backdrop-filter: blur(6px); transition: transform 0.3s ease; }
+.book-card-floating:hover { transform: translateX(-10px); }
+.book-card-floating .book-card-title { font-size: 13px; font-weight: 600; color: #fff; }
+.book-card-floating .book-card-author { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+.book-card-badge { display: inline-block; margin-top: 8px; padding: 3px 8px; border-radius: 20px; font-size: 10px; font-weight: 600; }
+.badge-available { background: var(--green-light); color: var(--green); }
+.badge-lent { background: var(--gold-light); color: var(--gold); }
+
+/* ── RIGHT PANEL (Form) ── */
+.login-right-panel {
+  width: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px;
+  position: relative;
+}
+
+@media (min-width: 900px) {
+  .login-right-panel { width: 440px; flex-shrink: 0; }
+}
+
+.accent-strip { height: 4px; background: linear-gradient(90deg, var(--gold) 0%, var(--accent) 100%); position: absolute; top: 0; left: 0; right: 0; }
+.form-header { margin-bottom: 36px; }
+.form-header h2 { font-size: 28px; color: var(--ink); margin-bottom: 6px; }
+.form-header p { font-size: 14px; color: var(--ink-muted); }
+
+.login-right-panel input { background: var(--paper-warm); }
+.remember-me { display: flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-muted); cursor: pointer; }
+.remember-me input { width: 15px; height: 15px; accent-color: var(--accent); }
+.forgot-link { font-size: 13px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.forgot-link:hover { text-decoration: underline; }
+
+.btn-signin { width: 100%; padding: 13px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; font-family: 'Inter', sans-serif; cursor: pointer; transition: background 0.2s, transform 0.1s; }
+.btn-signin:hover { background: var(--accent-mid); }
+.btn-signin:active { transform: scale(0.98); }
+
+.btn-guest { width: 100%; padding: 12px; background: var(--paper-warm); color: var(--ink); border: 1.5px solid var(--border-strong); border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+.btn-guest:hover { background: var(--paper-deep); }
+
+.signup-cta { text-align: center; margin-top: 28px; font-size: 14px; color: var(--ink-muted); }
+.signup-cta a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.signup-cta a:hover { text-decoration: underline; }
