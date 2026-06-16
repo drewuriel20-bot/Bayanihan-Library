@@ -68,10 +68,24 @@ function showAdminSection(id) {
 function doLogin() {
   const u = document.getElementById('login-user').value.trim();
   if (!u) { showToast('Please enter your username.', 'error'); return; }
-  currentUser = { name: u, firstName: u.split(' ')[0] || u, email: u + '@email.com', isAdmin: false };
-  setLoggedIn();
-  goTo('dashboard');
-  showToast('Welcome back, ' + currentUser.firstName + '!', 'success');
+
+  // Groupmate's loading button effect
+  const btn = document.getElementById('login-btn');
+  const originalText = btn.textContent;
+  btn.textContent = 'Signing in...';
+  btn.disabled = true;
+
+  // Fake network delay of 1 second before actually logging in
+  setTimeout(() => {
+    btn.textContent = originalText;
+    btn.disabled = false;
+    
+    // Original SPA login logic
+    currentUser = { name: u, firstName: u.split(' ')[0] || u, email: u + '@email.com', isAdmin: false };
+    setLoggedIn();
+    goTo('dashboard');
+    showToast('Welcome back, ' + currentUser.firstName + '!', 'success');
+  }, 1000); 
 }
 
 function doAdminLogin() {
