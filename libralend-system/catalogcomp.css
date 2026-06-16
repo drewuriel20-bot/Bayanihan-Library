@@ -68,12 +68,12 @@ body {
 .nav-brand .logo-dot { font-size: 1.4rem; }
 .nav-user { display: flex; align-items: center; gap: 8px; }
 .nav-btn {
-  background: none; border: none; color: #b5b0aa;
+  background: none; border: none; color: #fff;
   padding: 8px 16px; font-size: 14px; font-family: inherit;
   cursor: pointer; border-radius: var(--radius); transition: all 0.2s;
 }
 .nav-btn:hover, .nav-btn.active { color: #fff; }
-.nav-btn.signout-btn { color: #8c867e; font-size: 13px; margin-left: 8px; }
+.nav-btn.signout-btn { color: #fff; font-size: 13px; margin-left: 8px; }
 .nav-btn.signout-btn:hover { color: #ff6b6b; }
 .avatar-sm {
   width: 32px; height: 32px; border-radius: 50%;
