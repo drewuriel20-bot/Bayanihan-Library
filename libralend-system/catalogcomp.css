@@ -1,0 +1,230 @@
+/* --- COLOR TOKENS (LIBRALEND NAVY & GOLD THEME) --- */
+:root {
+  --ink: #0d1b2a;             /* Deep navy text for premium contrast */
+  --ink-soft: #415a77;        /* Slate blue for descriptions and icons */
+  --ink-muted: #778da9;       /* Muted gray-blue for secondary labels */
+  --paper: #f8f9fa;           /* Clean, bright background canvas */
+  --paper-warm: #f1f5f9;      /* Light gray-blue for sidebars and hover layers */
+  --paper-deep: #e2e8f0;      /* Slightly darker gray accents */
+  
+  /* Brand Identities */
+  --accent: #1e3a8a;          /* Rich royal navy for primary components */
+  --accent-hover: #172554;    /* Darker navy for active hover states */
+  --gold: #facc15;            /* The brand's vibrant gold accent button color */
+  --gold-hover: #eab308;      /* Slightly darker gold for focus states */
+  
+  /* Semantic Badges */
+  --green: #15803d;           /* Deep green for available status */
+  --green-light: #dcfce7;     /* Light green container background */
+  --red: #b91c1c;             /* Deep red for unavailable status */
+  --red-light: #fee2e2;       /* Light red container background */
+  
+  /* Structural Lines */
+  --border-light: #e5e7eb;    
+  --border-table: #e5e7eb;    
+  --radius: 6px;
+  --radius-lg: 10px;
+}
+
+/* --- DOCUMENT RESET --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  font-size: 14px;
+}
+
+/* --- TOP GLOBAL NAVIGATION --- */
+#nav {
+  background-color: #1b264f; /* Updated from deep brown to Libralend navy */
+  color: #fff;
+  height: 64px;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-brand {
+  font-family: 'Lora', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-brand .logo-dot { font-size: 1.4rem; }
+.nav-user { display: flex; align-items: center; gap: 8px; }
+.nav-btn {
+  background: none; border: none; color: #b5b0aa;
+  padding: 8px 16px; font-size: 14px; font-family: inherit;
+  cursor: pointer; border-radius: var(--radius); transition: all 0.2s;
+}
+.nav-btn:hover, .nav-btn.active { color: #fff; }
+.nav-btn.signout-btn { color: #8c867e; font-size: 13px; margin-left: 8px; }
+.nav-btn.signout-btn:hover { color: #ff6b6b; }
+.avatar-sm {
+  width: 32px; height: 32px; border-radius: 50%;
+  background-color: var(--gold); color: #0f172a; /* Dark text on gold accent */
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 13px; margin: 0 4px;
+}
+
+/* --- STRUCTURE INTERFACE LAYOUT --- */
+.dash-wrap {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: calc(100vh - 64px);
+}
+
+/* --- LEFT SIDEBAR PANEL --- */
+.dash-sidebar {
+  background-color: var(--paper-warm);
+  border-right: 1px solid var(--border-table);
+  padding: 2rem 0;
+}
+.user-block {
+  padding: 0 1.5rem 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.avatar-lg {
+  width: 56px; height: 56px; border-radius: 50%;
+  background-color: var(--accent); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 600; margin-bottom: 1rem;
+}
+.user-block h4 { font-size: 15px; font-weight: 600; color: var(--ink); }
+.admin-email { font-size: 12px; color: var(--ink-muted); margin-bottom: 0.75rem; }
+.role-badge {
+  background-color: #e0f2fe; color: #0369a1; /* Light sky blue background for premium tag look */
+  font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px;
+}
+.sidebar-nav { display: flex; flex-direction: column; width: 100%; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 1.5rem; color: var(--ink-soft);
+  text-decoration: none; cursor: pointer; font-weight: 400;
+  transition: all 0.15s;
+}
+.sidebar-nav i { width: 18px; color: var(--ink-muted); font-size: 15px; }
+.sidebar-nav a:hover { background-color: rgba(0,0,0,0.03); color: var(--ink); }
+.sidebar-nav a.active {
+  color: var(--accent); font-weight: 600; background: none;
+}
+.sidebar-nav a.active i { color: var(--accent); }
+
+/* --- CORE APP MAIN VIEW --- */
+.dash-main { padding: 2.5rem 3rem; background-color: var(--paper); }
+.panel-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; margin-bottom: 2rem;
+}
+.dash-title { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 600; color: var(--ink); }
+.dash-sub { font-size: 14px; color: var(--ink-muted); margin-top: 4px; }
+
+/* --- BUTTONS --- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border-radius: var(--radius);
+  font-family: inherit; font-size: 14px; font-weight: 500;
+  cursor: pointer; border: 1px solid transparent; transition: background 0.15s;
+}
+.btn-primary { 
+  background-color: var(--gold); 
+  color: #0f172a; /* Dark bold text for accessibility on the gold brand buttons */
+  font-weight: 600;
+}
+.btn-primary:hover { background-color: var(--gold-hover); }
+.btn-outline { background-color: #fff; color: var(--ink); border-color: var(--border-table); }
+.btn-outline:hover { background-color: var(--paper-warm); }
+.btn-action {
+  background: #fff; border: 1px solid var(--border-table);
+  padding: 6px 10px; border-radius: 4px; cursor: pointer; color: var(--ink);
+}
+.btn-action:hover { background-color: var(--paper-warm); }
+.btn-delete:hover { color: #fff; background-color: var(--red); border-color: var(--red); }
+
+/* --- FILTERS & TOOLBARS --- */
+.toolbar-stack {
+  display: flex; flex-direction: column; gap: 12px; margin-bottom: 1.5rem;
+}
+.search-box {
+  display: flex; align-items: center; background: #fff;
+  border: 1px solid var(--border-table); border-radius: var(--radius);
+  padding: 0 14px; width: 100%;
+}
+.search-box i { color: var(--ink-muted); margin-right: 10px; }
+.search-box input {
+  border: none; padding: 12px 0; width: 100%; font-family: inherit; font-size: 14px; outline: none;
+}
+.filter-select {
+  padding: 12px; border: 1px solid var(--border-table);
+  border-radius: var(--radius); background-color: #fff;
+  font-family: inherit; font-size: 14px; color: var(--ink); width: 100%; outline: none;
+}
+
+/* --- COMPACT DATA STRUCT TABLES --- */
+.table-wrap { width: 100%; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; text-align: left; }
+thead th {
+  background-color: #f1f5f9; /* Adjusted to cool gray-blue table striping */
+  color: var(--ink-soft);
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em; padding: 12px 16px;
+  border-bottom: 1px solid var(--border-table);
+}
+tbody td {
+  padding: 14px 16px; border-bottom: 1px solid var(--border-table);
+  color: var(--ink); font-size: 14px; vertical-align: middle;
+}
+tbody tr:hover { background-color: var(--paper-warm); }
+.text-right { text-align: right; }
+.actions-cell { display: flex; gap: 6px; justify-content: flex-end; }
+
+/* --- STATUS TAGS --- */
+.badge {
+  display: inline-flex; font-size: 12px; font-weight: 500;
+  padding: 2px 10px; border-radius: 4px;
+}
+.badge-genre { background-color: #f1f5f9; color: var(--ink-soft); }
+.badge-green { background-color: var(--green-light); color: var(--green); }
+.badge-red { background-color: var(--red-light); color: var(--red); }
+
+/* --- FORMS & DIALOG LAYOUT WINDOWS --- */
+.form-group { margin-bottom: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+label { display: block; font-size: 12px; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
+.modal-body input, .modal-body select {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--border-table);
+  border-radius: var(--radius); font-family: inherit; font-size: 14px; outline: none;
+}
+.modal-body input:focus, .modal-body select:focus { border-color: var(--accent); }
+
+/* --- MODAL BASELAYERS --- */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(13, 27, 42, 0.4); z-index: 200; /* Subtle semi-transparent navy backdrop overlay */
+  align-items: center; justify-content: center; padding: 1rem;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: #fff; border-radius: var(--radius-lg);
+  max-width: 540px; width: 100%; box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+.modal-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; }
+.modal-body { padding: 1.5rem; }
+.modal-footer { padding: 1rem 1.5rem; border-top: 1px solid var(--border-light); display: flex; gap: 10px; justify-content: flex-end; }
+.modal-close { background: none; border: none; cursor: pointer; font-size: 20px; color: var(--ink-muted); }
+
+/* --- LAYOUT BREAKPOINTS --- */
+@media (max-width: 900px) {
+  .dash-wrap { grid-template-columns: 1fr; }
+  .dash-sidebar { display: none; }
+}
