@@ -86,7 +86,16 @@
 
     <div class="book-grid" id="book-grid">
 
-        <div class="book-card">
+        <div class="book-card" 
+             data-title="Noli Me Tangere" 
+             data-author="José Rizal" 
+             data-genre="Filipino Lit"
+             data-status="available"
+             data-total-copies="3"
+             data-rating="4.5"
+             data-reviews="18"
+             data-cover-color="#3b82f6"
+             data-desc="The sweeping novel exposing the cancers of colonial society under Spanish friar rule.">
             <div class="book-cover">
                 <span class="avail-badge available">Available</span>
                 <i class="fas fa-book" style="color: #3b82f6;"></i>
@@ -94,11 +103,33 @@
             <div class="book-info">
                 <h4>Noli Me Tangere</h4>
                 <div class="author">José Rizal</div>
+                
+                <div class="rating-container">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="rating-value">4.5</span>
+                    <span class="review-count">· 18 reviews</span>
+                </div>
+
                 <span class="genre-tag">Filipino Lit</span>
             </div>
         </div>
 
-        <div class="book-card">
+        <div class="book-card" 
+             data-title="El Filibusterismo" 
+             data-author="José Rizal" 
+             data-genre="Filipino Lit"
+             data-status="checked-out"
+             data-total-copies="2"
+             data-rating="4.8"
+             data-reviews="12"
+             data-cover-color="#ec4899"
+             data-desc="The sequel to Noli Me Tangere, depicting the rise of Filipino nationalism.">
             <div class="book-cover">
                 <span class="avail-badge checked-out">Checked out</span>
                 <i class="fas fa-book" style="color: #ec4899;"></i>
@@ -106,11 +137,33 @@
             <div class="book-info">
                 <h4>El Filibusterismo</h4>
                 <div class="author">José Rizal</div>
+                
+                <div class="rating-container">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="rating-value">4.8</span>
+                    <span class="review-count">· 12 reviews</span>
+                </div>
+
                 <span class="genre-tag">Filipino Lit</span>
             </div>
         </div>
 
-        <div class="book-card">
+        <div class="book-card" 
+             data-title="Florante at Laura" 
+             data-author="Francisco Balagtas" 
+             data-genre="Filipino Lit"
+             data-status="available"
+             data-total-copies="1"
+             data-rating="4.2"
+             data-reviews="8"
+             data-cover-color="#f97316"
+             data-desc="An epic masterpiece written as a poetic fluid narrative detailing true love, betrayal, and resilience.">
             <div class="book-cover">
                 <span class="avail-badge available">Available</span>
                 <i class="fas fa-book" style="color: #f97316;"></i>
@@ -118,11 +171,33 @@
             <div class="book-info">
                 <h4>Florante at Laura</h4>
                 <div class="author">Francisco Balagtas</div>
+                
+                <div class="rating-container">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <span class="rating-value">4.2</span>
+                    <span class="review-count">· 8 reviews</span>
+                </div>
+
                 <span class="genre-tag">Filipino Lit</span>
             </div>
         </div>
 
-        <div class="book-card">
+        <div class="book-card" 
+             data-title="Ibong Adarna" 
+             data-author="Anonymous" 
+             data-genre="Filipino Lit"
+             data-status="available"
+             data-total-copies="4"
+             data-rating="4.0"
+             data-reviews="15"
+             data-cover-color="#10b981"
+             data-desc="A dynamic magical epic tracing the quest of three princes seeking the song of the legendary mythical bird.">
             <div class="book-cover">
                 <span class="avail-badge available">Available</span>
                 <i class="fas fa-book" style="color: #10b981;"></i>
@@ -130,6 +205,19 @@
             <div class="book-info">
                 <h4>Ibong Adarna</h4>
                 <div class="author">Anonymous</div>
+                
+                <div class="rating-container">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <span class="rating-value">4.0</span>
+                    <span class="review-count">· 15 reviews</span>
+                </div>
+
                 <span class="genre-tag">Filipino Lit</span>
             </div>
         </div>
@@ -137,6 +225,99 @@
     </div>
 
 </div>
+
+<div id="book-modal" class="modal-overlay">
+    <div class="modal-card">
+        <button class="modal-close-btn" id="modal-close-icon">&times;</button>
+        
+        <div class="modal-body">
+            <h3 id="modal-title">Book Title</h3>
+            <p class="modal-author-meta">by <span id="modal-author">Author</span> · <span id="modal-genre-meta">Genre</span> · 1891</p>
+            
+            <div class="modal-main-content">
+                <div class="modal-cover-preview" id="modal-cover-box">
+                    <i class="fas fa-book" id="modal-icon"></i>
+                </div>
+                
+                <div class="modal-details-pane">
+                    <div class="modal-badges-row">
+                        <span id="modal-avail-badge" class="modal-badge-pill">Status</span>
+                        <span class="modal-badge-pill static-copies"><span id="modal-copies-count">0</span> total copies</span>
+                        <span id="modal-genre-tag" class="modal-genre-tag">Genre</span>
+                    </div>
+                    
+                    <p id="modal-description" class="modal-desc-text">Description goes here...</p>
+                    
+                    <div class="rating-container">
+                        <div class="stars" id="modal-stars-slot"></div>
+                        <span id="modal-rating-num" class="rating-value">0.0</span>
+                        <span id="modal-reviews-num" class="review-count">12 reviews</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-info-bar">
+                <i class="fas fa-info-circle"></i>
+                <span>Loan period: 14 days. Renewable once. Max 5 books at a time.</span>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="modal-btn-close" id="modal-close-btn">Close</button>
+            <button class="modal-btn-action">
+                <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i>Sign in to borrow
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.book-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.getAttribute('data-title');
+            const author = card.getAttribute('data-author');
+            const genre = card.getAttribute('data-genre');
+            const status = card.getAttribute('data-status');
+            const totalCopies = card.getAttribute('data-total-copies');
+            const rating = card.getAttribute('data-rating');
+            const reviews = card.getAttribute('data-reviews');
+            const color = card.getAttribute('data-cover-color');
+            const desc = card.getAttribute('data-desc');
+
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-author').textContent = author;
+            document.getElementById('modal-genre-meta').textContent = genre;
+            document.getElementById('modal-genre-tag').textContent = genre;
+            document.getElementById('modal-copies-count').textContent = totalCopies;
+            document.getElementById('modal-description').textContent = desc;
+            document.getElementById('modal-rating-num').textContent = rating;
+            document.getElementById('modal-reviews-num').textContent = `${reviews} reviews`;
+            document.getElementById('modal-icon').style.color = color;
+
+            const availBadge = document.getElementById('modal-avail-badge');
+            if(status === 'available') {
+                availBadge.textContent = "Copies available";
+                availBadge.className = "modal-badge-pill available";
+            } else {
+                availBadge.textContent = "All copies checked out";
+                availBadge.className = "modal-badge-pill checked-out";
+            }
+
+            const starsSlot = document.getElementById('modal-stars-slot');
+            starsSlot.innerHTML = card.querySelector('.stars').innerHTML;
+
+            document.getElementById('book-modal').classList.add('visible');
+        });
+    });
+
+    const closeModal = () => document.getElementById('book-modal').classList.remove('visible');
+    document.getElementById('modal-close-icon').addEventListener('click', closeModal);
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+    
+    document.getElementById('book-modal').addEventListener('click', (e) => {
+        if(e.target.id === 'book-modal') closeModal();
+    });
+</script>
 
 </body>
 </html>
