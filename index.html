@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -22,7 +23,7 @@
     <button class="nav-btn" onclick="scrollAbout()">About</button>
     <button class="nav-btn" onclick="goTo('catalog')">Catalog</button>
     <button class="nav-btn" onclick="goTo('login')">Log in</button>
-    <button class="nav-btn cta" onclick="goTo('register')">Join free</button>
+    <button class="nav-btn cta" onclick="goTo('register')">Sign up</button>
   </div>
   <div id="nav-user" class="nav-user" style="display:none;">
     <button class="nav-btn" onclick="goTo('catalog')">Catalog</button>
@@ -41,11 +42,14 @@
       Mandaluyong City<br>
       Kaban ng Hiyas Library
     </p>
-    <h1>Every book is a door. <em>Open yours.</em></h1>
+    <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 15px;">
+        Every book is a door.<br>
+        <span style="color: var(--gold); font-style: italic;">Open yours.</span>
+      </h1>
     <p>A free community lending system serving every resident — from first-time readers to lifelong scholars.</p>
     <div class="hero-actions">
       <button class="btn btn-gold" onclick="goTo('register')" style="padding:12px 28px; font-size:15px;">
-        <i class="fas fa-user-plus"></i> Join for free
+        <i class="fas fa-user-circle"></i> Sign up / Log in
       </button>
       <button class="btn btn-outline" onclick="goTo('catalog')" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:#fff; padding:12px 28px; font-size:15px;">
         <i class="fas fa-search"></i> Browse catalog
@@ -92,7 +96,7 @@
       <div class="hours-card">
           <h3><i class="fas fa-clock" style="color:var(--gold); margin-right:8px;"></i>Physical Library Hours</h3>
           <div class="hours-row">
-            <span class="day">Monday – Saturday</span>
+            <span class="day">Monday – Thursday</span>
             <span class="time">8:00 AM – 5:00 PM</span>
           </div>
           <div class="hours-row">
@@ -387,7 +391,7 @@
         <p style="color: var(--ink-soft); margin-bottom: 0.5rem;"><strong>Location:</strong> 2nd Floor, Kaban ng Hiyas Building, City Hall Compound, Mandaluyong City</p>
         <p style="color: var(--ink-soft); margin-bottom: 0.5rem;"><strong>Email:</strong> kabannghiyaslibrary@yahoo.com</p>
         <p style="color: var(--ink-soft); margin-bottom: 0.5rem;"><strong>Telephone:</strong> 748-0047 / 532-5001 loc 557</p>
-        <p style="color: var(--ink-soft); margin-top: 1.5rem; font-size: 13px;"><strong>Office Hours:</strong> Monday to Saturday, 8:00 AM to 5:00 PM (with a 12:00 NN to 1:00 PM lunch break).</p>
+        <p style="color: var(--ink-soft); margin-top: 1.5rem; font-size: 13px;"><strong>Office Hours:</strong> Monday to Thursday, 8:00 AM to 5:00 PM (with a 12:00 NN to 1:00 PM lunch break).</p>
       </div>
 
       <div class="card card-pad" style="border-left: 4px solid var(--accent);">
