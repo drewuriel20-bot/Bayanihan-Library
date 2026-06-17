@@ -42,6 +42,8 @@ body {
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 20;
 }
 
 .nav-container {
@@ -51,7 +53,6 @@ body {
     align-items: center;
 }
 
-/* Logo Alignment */
 .nav-brand {
     display: flex;
     align-items: center;
@@ -73,7 +74,6 @@ body {
     color: #ffffff;
 }
 
-/* Links */
 .nav-links {
     display: flex;
     align-items: center;
@@ -92,7 +92,6 @@ body {
     color: #ffffff;
 }
 
-/* Orange Pill CTA Button */
 .btn-join {
     background-color: var(--accent-orange);
     color: #ffffff;
@@ -109,24 +108,70 @@ body {
 }
 
 /* ==========================================
-   CATALOG HERO BLOCK (Deep Navy + Stripes)
+   CATALOG HERO BLOCK WITH SMOOTH BACKGROUND IMAGE
    ========================================== */
 .catalog-header {
     background-color: var(--hero-bg);
-    /* Creates the diagonal stripe texture effect dynamically from your image */
-    background-image: linear-gradient(
-        135deg, 
-        rgba(255, 255, 255, 0.02) 25%, 
-        transparent 25%, 
-        transparent 50%, 
-        rgba(255, 255, 255, 0.02) 50%, 
-        rgba(255, 255, 255, 0.02) 75%, 
-        transparent 75%, 
-        transparent
-    );
-    background-size: 40px 40px;
-    padding: 3.5rem var(--side-padding) 2.5rem var(--side-padding);
+    padding: 4.5rem var(--side-padding) 3.5rem var(--side-padding);
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    min-height: 380px;
+}
+
+.catalog-header-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* --- BACKGROUND STYLING --- */
+.bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(17, 30, 71, 0.92), rgba(15, 23, 42, 0.88));
+    z-index: 2;
+    backdrop-filter: blur(1px);
+}
+
+.moving-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; /* Double width ensures smooth horizontal panning space */
+    height: 100%;
+    
+    /* Pulls your single background file natively from the same directory level */
+    background-image: url("libraryscroll.jpg"); 
+    
+    background-size: auto 100%; 
+    background-repeat: repeat-x; 
+    background-position: left center;
+    opacity: 0.18; /* Blends the image behind the search interface */
+    
+    animation: continuousScroll 35s linear infinite;
+}
+
+/* Infinite backdrop scroll animation */
+@keyframes continuousScroll {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
 }
 
 .header-badge {
@@ -161,7 +206,6 @@ body {
     width: 100%;
 }
 
-/* Full Width Input Pill */
 .search-box {
     display: flex;
     align-items: center;
@@ -192,7 +236,6 @@ body {
     outline: none;
 }
 
-/* Sub-row Dropdowns Alignment */
 .filters-group {
     display: flex;
     gap: 14px;
@@ -260,7 +303,6 @@ body {
     box-shadow: 0 12px 30px rgba(17, 30, 71, 0.06);
 }
 
-/* Pale Ice-Blue Tint for upper cover block */
 .book-cover {
     height: 190px;
     background-color: #f1f5f9; 
@@ -275,7 +317,6 @@ body {
     font-size: 3.8rem;
 }
 
-/* Status Badges */
 .book-cover .avail-badge {
     position: absolute;
     top: 14px;
@@ -296,7 +337,6 @@ body {
     color: #991b1b;
 }
 
-/* Typography Container */
 .book-info {
     padding: 1.4rem;
     background: var(--bg-white);
@@ -316,7 +356,6 @@ body {
     margin-bottom: 14px;
 }
 
-/* Lower Genre Pill Tag */
 .genre-tag {
     display: inline-block;
     font-size: 11px;
@@ -339,7 +378,7 @@ body {
 }
 
 .rating-container .stars {
-    color: #c27829; /* Amber brown star color from reference design */
+    color: #c27829; 
     display: flex;
     gap: 2px;
 }
@@ -496,7 +535,7 @@ body {
 }
 
 .modal-info-bar {
-    background-color: #fdfae6; /* Muted yellow information container alert block */
+    background-color: #fdfae6;
     border-radius: 8px;
     padding: 14px 18px;
     display: flex;
@@ -511,7 +550,6 @@ body {
     font-size: 15px;
 }
 
-/* Footer Control Row */
 .modal-footer {
     border-top: 1px solid var(--border);
     padding: 1rem 2.5rem;
@@ -532,7 +570,7 @@ body {
 }
 
 .modal-btn-action {
-    background-color: #7c2d12; /* Rich reddish-brown matching the button style */
+    background-color: #eab308;
     color: white;
     border: none;
     padding: 10px 24px;
