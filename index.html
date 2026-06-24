@@ -3,642 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bayanihan Community Library</title>
+<title>Libralend | Kaban ng Hiyas Library</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-  :root {
-    --ink: #1a1612;
-    --ink-soft: #4a4540;
-    --ink-muted: #8a857e;
-    --paper: #faf8f4;
-    --paper-warm: #f0ece4;
-    --paper-deep: #e5dfd5;
-    --accent: #8b3a1a;
-    --accent-light: #f5ebe6;
-    --accent-mid: #c9622e;
-    --green: #2d6a4f;
-    --green-light: #e8f5ee;
-    --blue: #1d4e89;
-    --blue-light: #e8f0fa;
-    --amber: #b5651d;
-    --amber-light: #fdf3e3;
-    --red: #922b21;
-    --red-light: #fde8e7;
-    --border: rgba(26,22,18,0.12);
-    --border-strong: rgba(26,22,18,0.22);
-    --shadow-card: 0 1px 3px rgba(26,22,18,0.08), 0 4px 12px rgba(26,22,18,0.06);
-    --radius: 8px;
-    --radius-lg: 14px;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    min-height: 100vh;
-    font-size: 15px;
-    line-height: 1.6;
-  }
-
-  /* ---------- TYPOGRAPHY ---------- */
-  .serif { font-family: 'Lora', Georgia, serif; }
-  h1, h2, h3 { font-family: 'Lora', Georgia, serif; font-weight: 600; line-height: 1.25; }
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.15rem; }
-
-  /* ---------- LAYOUT ---------- */
-  .page { display: none; }
-  .page.active { display: block; }
-
-  /* ---------- NAV ---------- */
-  #nav {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .nav-brand {
-    font-family: 'Lora', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    color: var(--paper);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-  }
-  .nav-brand .logo-dot {
-    width: 28px; height: 28px;
-    background: var(--accent);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px;
-  }
-  .nav-links { display: flex; gap: 6px; align-items: center; }
-  .nav-btn {
-    background: none; border: none; cursor: pointer;
-    color: rgba(250,248,244,0.7);
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    padding: 6px 14px;
-    border-radius: 6px;
-    transition: all 0.15s;
-  }
-  .nav-btn:hover, .nav-btn.active { color: var(--paper); background: rgba(255,255,255,0.1); }
-  .nav-btn.cta {
-    background: var(--accent);
-    color: var(--paper);
-    margin-left: 4px;
-  }
-  .nav-btn.cta:hover { background: var(--accent-mid); }
-  .nav-user {
-    display: flex; align-items: center; gap: 10px;
-    font-size: 14px;
-    color: rgba(250,248,244,0.8);
-  }
-  .avatar-sm {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 600; color: var(--paper);
-  }
-
-  /* ---------- BUTTONS ---------- */
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 9px 20px;
-    border-radius: var(--radius);
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.15s;
-    border: 1.5px solid transparent;
-    white-space: nowrap;
-  }
-  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .btn-primary:hover { background: var(--accent-mid); border-color: var(--accent-mid); }
-  .btn-outline { background: transparent; color: var(--ink); border-color: var(--border-strong); }
-  .btn-outline:hover { background: var(--paper-warm); }
-  .btn-ghost { background: none; border: none; color: var(--accent); font-weight: 500; padding: 6px 0; cursor: pointer; font-family: inherit; font-size: 14px; }
-  .btn-green { background: var(--green); color: #fff; border-color: var(--green); }
-  .btn-green:hover { background: #1e5c3f; }
-  .btn-danger { background: var(--red); color: #fff; border-color: var(--red); }
-  .btn-danger:hover { background: #7b2218; }
-  .btn-sm { padding: 6px 14px; font-size: 13px; }
-  .btn-full { width: 100%; justify-content: center; }
-
-  /* ---------- FORM ---------- */
-  .form-group { margin-bottom: 18px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-  label { display: block; font-size: 13px; font-weight: 500; color: var(--ink-soft); margin-bottom: 6px; }
-  input, select, textarea {
-    width: 100%; padding: 10px 14px;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    background: #fff;
-    color: var(--ink);
-    transition: border-color 0.15s;
-    outline: none;
-  }
-  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
-  textarea { resize: vertical; min-height: 80px; }
-
-  /* ---------- CARDS ---------- */
-  .card {
-    background: #fff;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-card);
-  }
-  .card-pad { padding: 1.75rem; }
-
-  /* ---------- BADGE / TAG ---------- */
-  .badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-  .badge-green { background: var(--green-light); color: var(--green); }
-  .badge-red { background: var(--red-light); color: var(--red); }
-  .badge-amber { background: var(--amber-light); color: var(--amber); }
-  .badge-blue { background: var(--blue-light); color: var(--blue); }
-  .badge-gray { background: var(--paper-warm); color: var(--ink-soft); }
-
-  /* ---------- SECTION ---------- */
-  .section { padding: 3rem 2rem; max-width: 1100px; margin: 0 auto; }
-  .section-sm { padding: 2rem; max-width: 1100px; margin: 0 auto; }
-  .section-center { text-align: center; }
-
-  /* ---------- PAGE: HOME ---------- */
-  .hero {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 6rem 2rem 5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 30px,
-      rgba(139,58,26,0.04) 30px,
-      rgba(139,58,26,0.04) 60px
-    );
-  }
-  .hero-eyebrow {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--accent-mid);
-    margin-bottom: 1.5rem;
-  }
-  .hero h1 {
-    font-size: 3.2rem; margin-bottom: 1.25rem;
-    max-width: 680px; margin-left: auto; margin-right: auto;
-    line-height: 1.15;
-  }
-  .hero h1 em { color: var(--accent-mid); font-style: italic; }
-  .hero p {
-    font-size: 1.1rem; max-width: 520px;
-    margin: 0 auto 2.5rem;
-    color: rgba(240,236,228,0.75);
-    line-height: 1.7;
-  }
-  .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-  .stat-strip {
-    background: var(--paper-warm);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 1.75rem 2rem;
-    display: flex; justify-content: center; gap: 4rem;
-    flex-wrap: wrap;
-  }
-  .stat-item { text-align: center; }
-  .stat-item .num {
-    font-family: 'Lora', serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--accent);
-    display: block;
-  }
-  .stat-item .lbl { font-size: 13px; color: var(--ink-muted); }
-
-  .feature-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-    padding: 3rem 2rem; max-width: 1100px; margin: 0 auto;
-  }
-  .feature-card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.75rem;
-  }
-  .feature-icon {
-    width: 48px; height: 48px;
-    background: var(--accent-light);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 1rem;
-    font-size: 20px; color: var(--accent);
-  }
-  .feature-card h3 { margin-bottom: 0.5rem; font-size: 1.05rem; }
-  .feature-card p { font-size: 14px; color: var(--ink-muted); line-height: 1.65; }
-
-  .about-band {
-    background: var(--paper-warm);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 4rem 2rem;
-    max-width: 100%;
-  }
-  .about-inner {
-    max-width: 900px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-    align-items: center;
-  }
-  .about-inner .serif { font-style: italic; color: var(--accent); font-size: 1rem; margin-bottom: 0.5rem; display: block; }
-  .about-inner h2 { margin-bottom: 1rem; }
-  .about-inner p { color: var(--ink-soft); line-height: 1.75; font-size: 15px; margin-bottom: 1rem; }
-  .values-list { list-style: none; }
-  .values-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 12px;
-    font-size: 14px;
-  }
-  .values-list li:last-child { border-bottom: none; }
-  .values-list .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--accent); flex-shrink: 0;
-  }
-
-  .hours-card {
-    background: var(--ink); color: var(--paper);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-  }
-  .hours-card h3 { color: var(--paper); margin-bottom: 1.25rem; }
-  .hours-row {
-    display: flex; justify-content: space-between;
-    font-size: 14px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .hours-row .day { color: rgba(240,236,228,0.6); }
-  .hours-row .time { color: var(--paper); font-weight: 500; }
-
-  .footer-strip {
-    background: var(--ink);
-    color: rgba(240,236,228,0.5);
-    text-align: center;
-    padding: 1.5rem;
-    font-size: 13px;
-  }
-  .footer-strip span { color: var(--accent-mid); }
-
-  /* ---------- PAGE: AUTH ---------- */
-  .auth-wrap {
-    min-height: calc(100vh - 60px);
-    display: flex; align-items: center; justify-content: center;
-    padding: 2rem;
-    background: var(--paper-warm);
-  }
-  .auth-card {
-    background: #fff;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-card);
-    width: 100%; max-width: 480px;
-    padding: 2.5rem;
-  }
-  .auth-card.wide { max-width: 720px; }
-  .auth-card .logo-block {
-    text-align: center; margin-bottom: 2rem;
-  }
-  .auth-card .logo-block h2 { font-size: 1.5rem; margin-bottom: 0.25rem; }
-  .auth-card .logo-block p { font-size: 14px; color: var(--ink-muted); }
-  .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
-  .auth-switch { text-align: center; font-size: 14px; color: var(--ink-muted); margin-top: 1.25rem; }
-  .auth-switch a { color: var(--accent); text-decoration: none; font-weight: 500; cursor: pointer; }
-
-  /* ---------- PAGE: CATALOG ---------- */
-  .catalog-header {
-    background: var(--paper-warm);
-    border-bottom: 1px solid var(--border);
-    padding: 2rem;
-  }
-  .catalog-header h2 { margin-bottom: 0.25rem; }
-  .catalog-header p { font-size: 14px; color: var(--ink-muted); }
-  .catalog-toolbar {
-    display: flex; gap: 12px; align-items: center;
-    flex-wrap: wrap; margin-top: 1.25rem;
-  }
-  .search-box {
-    flex: 1; min-width: 220px;
-    display: flex; align-items: center;
-    background: #fff;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 0 14px;
-    gap: 10px;
-  }
-  .search-box i { color: var(--ink-muted); font-size: 15px; }
-  .search-box input {
-    border: none; padding: 10px 0; flex: 1;
-    font-size: 14px; background: none;
-  }
-  .search-box input:focus { outline: none; }
-  .filter-select {
-    padding: 10px 14px;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    font-size: 14px;
-    background: #fff;
-    cursor: pointer;
-  }
-  .book-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.25rem;
-    padding: 2rem;
-    max-width: 1100px; margin: 0 auto;
-  }
-  .book-card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    cursor: pointer;
-    transition: box-shadow 0.15s, transform 0.15s;
-  }
-  .book-card:hover { box-shadow: 0 4px 20px rgba(26,22,18,0.12); transform: translateY(-2px); }
-  .book-cover {
-    height: 160px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 3rem;
-    position: relative;
-  }
-  .book-cover .avail-badge {
-    position: absolute; top: 10px; right: 10px;
-  }
-  .book-info { padding: 1rem; }
-  .book-info h4 { font-size: 14px; margin-bottom: 3px; font-weight: 600; }
-  .book-info .author { font-size: 12px; color: var(--ink-muted); margin-bottom: 8px; }
-  .book-info .genre { font-size: 11px; }
-  .book-rating { font-size: 12px; color: var(--amber); margin-top: 6px; }
-
-  /* ---------- MODAL ---------- */
-  .modal-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(26,22,18,0.55);
-    z-index: 200;
-    align-items: center; justify-content: center;
-    padding: 1rem;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal {
-    background: #fff;
-    border-radius: var(--radius-lg);
-    max-width: 560px; width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-  }
-  .modal-header {
-    padding: 1.5rem 1.75rem 1rem;
-    border-bottom: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: flex-start;
-  }
-  .modal-body { padding: 1.5rem 1.75rem; }
-  .modal-footer {
-    padding: 1rem 1.75rem;
-    border-top: 1px solid var(--border);
-    display: flex; gap: 10px; justify-content: flex-end;
-  }
-  .modal-close { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--ink-muted); line-height: 1; }
-
-  /* ---------- DASHBOARD ---------- */
-  .dash-wrap {
-    display: grid; grid-template-columns: 240px 1fr;
-    min-height: calc(100vh - 60px);
-  }
-  .dash-sidebar {
-    background: var(--paper-warm);
-    border-right: 1px solid var(--border);
-    padding: 1.5rem 0;
-  }
-  .dash-sidebar .user-block {
-    padding: 0 1.25rem 1.25rem;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 1rem;
-  }
-  .avatar-lg {
-    width: 52px; height: 52px; border-radius: 50%;
-    background: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; font-weight: 600; color: #fff;
-    margin-bottom: 10px;
-  }
-  .dash-sidebar .user-block h4 { font-size: 15px; }
-  .dash-sidebar .user-block p { font-size: 12px; color: var(--ink-muted); }
-  .dash-sidebar .member-since { font-size: 11px; color: var(--ink-muted); margin-top: 6px; }
-  .sidebar-nav a {
-    display: flex; align-items: center; gap: 10px;
-    padding: 10px 1.25rem;
-    font-size: 14px; color: var(--ink-soft);
-    text-decoration: none;
-    cursor: pointer;
-    border-left: 3px solid transparent;
-    transition: all 0.12s;
-  }
-  .sidebar-nav a:hover { background: var(--paper-deep); color: var(--ink); }
-  .sidebar-nav a.active { border-left-color: var(--accent); background: var(--accent-light); color: var(--accent); font-weight: 500; }
-  .dash-main { padding: 2rem; overflow-y: auto; }
-  .dash-section { display: none; }
-  .dash-section.active { display: block; }
-  .dash-title { font-size: 1.25rem; margin-bottom: 0.25rem; }
-  .dash-sub { font-size: 14px; color: var(--ink-muted); margin-bottom: 1.75rem; }
-  .stat-cards {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
-    margin-bottom: 2rem;
-  }
-  .stat-card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.25rem;
-  }
-  .stat-card .sc-label { font-size: 12px; color: var(--ink-muted); margin-bottom: 4px; }
-  .stat-card .sc-value { font-size: 1.75rem; font-weight: 600; font-family: 'Lora', serif; }
-  .stat-card .sc-sub { font-size: 12px; color: var(--ink-muted); margin-top: 2px; }
-  .stat-card.accent { background: var(--accent); border-color: var(--accent); }
-  .stat-card.accent .sc-label, .stat-card.accent .sc-value, .stat-card.accent .sc-sub { color: rgba(255,255,255,0.9); }
-
-  /* ---------- TABLE ---------- */
-  .table-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  thead th {
-    text-align: left; padding: 10px 14px;
-    font-size: 12px; font-weight: 600;
-    color: var(--ink-muted); text-transform: uppercase;
-    letter-spacing: 0.05em;
-    background: var(--paper-warm);
-    border-bottom: 1px solid var(--border);
-  }
-  tbody td { padding: 12px 14px; border-bottom: 1px solid var(--border); }
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover { background: var(--paper-warm); }
-
-  /* ---------- TOAST ---------- */
-  #toast {
-    position: fixed; bottom: 24px; right: 24px;
-    background: var(--ink); color: var(--paper);
-    padding: 12px 20px; border-radius: var(--radius);
-    font-size: 14px;
-    transform: translateY(80px); opacity: 0;
-    transition: all 0.25s;
-    z-index: 500;
-    display: flex; align-items: center; gap: 10px;
-    max-width: 320px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  }
-  #toast.show { transform: translateY(0); opacity: 1; }
-  #toast.success { background: var(--green); }
-  #toast.error { background: var(--red); }
-
-  /* ---------- ADMIN ---------- */
-  .admin-tabs {
-    display: flex; gap: 0;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 1.75rem;
-  }
-  .tab-btn {
-    padding: 10px 20px;
-    background: none; border: none;
-    cursor: pointer; font-family: 'Inter', sans-serif;
-    font-size: 14px; font-weight: 500;
-    color: var(--ink-muted);
-    border-bottom: 2px solid transparent;
-    transition: all 0.15s;
-  }
-  .tab-btn:hover { color: var(--ink); }
-  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-
-  .progress-bar {
-    height: 6px; background: var(--paper-deep);
-    border-radius: 100px; overflow: hidden;
-    margin-top: 4px;
-  }
-  .progress-fill {
-    height: 100%; background: var(--accent);
-    border-radius: 100px; transition: width 0.3s;
-  }
-
-  /* ---------- WISHLIST ---------- */
-  .wishlist-empty {
-    text-align: center; padding: 3rem 1rem; color: var(--ink-muted);
-  }
-  .wishlist-empty i { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
-
-  /* ---------- NOTIFICATION ---------- */
-  .notif-item {
-    padding: 1rem;
-    border-bottom: 1px solid var(--border);
-    display: flex; gap: 14px; align-items: flex-start;
-  }
-  .notif-icon {
-    width: 36px; height: 36px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; font-size: 15px;
-  }
-  .notif-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--accent); flex-shrink: 0; margin-top: 6px;
-  }
-
-  /* ---------- REVIEW ---------- */
-  .review-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .review-item:last-child { border-bottom: none; }
-  .review-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-  .review-meta .stars { color: var(--amber); font-size: 12px; }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 768px) {
-    .hero h1 { font-size: 2.2rem; }
-    .feature-grid { grid-template-columns: 1fr; }
-    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
-    .form-row, .form-row-3 { grid-template-columns: 1fr; }
-    .stat-cards { grid-template-columns: repeat(2, 1fr); }
-    .dash-wrap { grid-template-columns: 1fr; }
-    .dash-sidebar { display: none; }
-    .book-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav id="nav">
   <div class="nav-brand" onclick="goTo('home')">
-    <div class="logo-dot">📚</div>
-    Bayanihan Library
+    <div class="logo-dot"><i class="fas fa-book-open"></i></div>
+    <span class="logo-text">Libralend</span>
   </div>
   <div id="nav-guest" class="nav-links">
     <button class="nav-btn" onclick="goTo('home')">Home</button>
     <button class="nav-btn" onclick="scrollAbout()">About</button>
     <button class="nav-btn" onclick="goTo('catalog')">Catalog</button>
     <button class="nav-btn" onclick="goTo('login')">Log in</button>
-    <button class="nav-btn cta" onclick="goTo('register')">Join free</button>
+    <button class="nav-btn cta" onclick="goTo('register')">Sign up</button>
   </div>
   <div id="nav-user" class="nav-user" style="display:none;">
     <button class="nav-btn" onclick="goTo('catalog')">Catalog</button>
     <button class="nav-btn" id="adminNavBtn" style="display:none;" onclick="goTo('admin')">Admin</button>
     <button class="nav-btn" onclick="goTo('dashboard')">My Library</button>
     <div class="avatar-sm" id="navAvatar">?</div>
-    <button class="nav-btn" onclick="logout()" style="color:rgba(240,236,228,0.5); font-size:13px;">Sign out</button>
+    <button class="nav-btn" onclick="logout()" style="color:rgba(248, 250, 252, 0.5); font-size:13px;">Sign out</button>
   </div>
 </nav>
 
-<!-- TOAST -->
 <div id="toast"><i class="fas fa-check-circle"></i><span id="toast-msg"></span></div>
 
-<!-- ================================ PAGE: HOME ================================ -->
 <div id="page-home" class="page active">
   <div class="hero">
-    <p class="hero-eyebrow">Barangay San Isidro · Est. 2008</p>
-    <h1>Every book is a door. <em>Open yours.</em></h1>
-    <p>A free community lending library serving every resident — from first-time readers to lifelong scholars.</p>
+    <p class="hero-eyebrow">
+      Mandaluyong City<br>
+      Kaban ng Hiyas Library
+    </p>
+    <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 15px;">
+        Every book is a door.<br>
+        <span style="color: var(--gold); font-style: italic;">Open yours.</span>
+      </h1>
+    <p>A free community lending system serving every resident — from first-time readers to lifelong scholars.</p>
     <div class="hero-actions">
-      <button class="btn btn-primary" onclick="goTo('register')" style="padding:12px 28px; font-size:15px;">
-        <i class="fas fa-user-plus"></i> Join for free
+      <button class="btn btn-gold" onclick="goTo('register')" style="padding:12px 28px; font-size:15px;">
+        <i class="fas fa-user-circle"></i> Sign up / Log in
       </button>
       <button class="btn btn-outline" onclick="goTo('catalog')" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:#fff; padding:12px 28px; font-size:15px;">
         <i class="fas fa-search"></i> Browse catalog
@@ -657,109 +68,157 @@
     <div class="feature-card">
       <div class="feature-icon"><i class="fas fa-book-open"></i></div>
       <h3>Borrow up to 5 books</h3>
-      <p>Members can check out up to five titles at a time for 14 days, renewable once online.</p>
+      <p>Members can check out up to five titles at a time for 14 days, renewable once through the Libralend portal.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon"><i class="fas fa-bell"></i></div>
       <h3>Hold & reserve</h3>
-      <p>Book is checked out? Place a hold and we'll notify you the moment it's back on the shelf.</p>
+      <p>Book is checked out? Place a hold and we'll notify you the moment it's ready for pick-up at Kaban ng Hiyas.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon"><i class="fas fa-star"></i></div>
       <h3>Reviews & reading lists</h3>
-      <p>Rate books, leave reviews, and share curated reading lists with your neighbors.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon"><i class="fas fa-clock"></i></div>
-      <h3>Reading history</h3>
-      <p>Your personal reading log keeps track of every book you've borrowed — a record of your journey.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon"><i class="fas fa-users"></i></div>
-      <h3>Book clubs</h3>
-      <p>Join one of four monthly book club circles. All skill levels and genres welcome.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon"><i class="fas fa-child"></i></div>
-      <h3>Children's corner</h3>
-      <p>Dedicated section for young readers with age-appropriate collections and story hour events.</p>
+      <p>Rate books, leave reviews, and share curated reading lists with your neighbors in Mandaluyong.</p>
     </div>
   </div>
 
   <div class="about-band" id="about-section">
     <div class="about-inner">
       <div>
-        <span class="serif">Our story</span>
-        <h2>A library built by the barangay, for the barangay</h2>
-        <p>Bayanihan Community Library was founded in 2008 by a group of local teachers, parents, and retirees who believed that access to books should never depend on income or age.</p>
-        <p>Today, we house over 2,400 titles across fiction, non-fiction, Filipino literature, children's books, and academic references — all free to borrow for every registered community member.</p>
-        <p>We survive on donations, volunteer hours, and the love of our community.</p>
-        <button class="btn btn-outline" onclick="goTo('register')" style="margin-top:0.5rem;">
+        <span class="serif">Our mission</span>
+        <h2>A digital bridge for Kaban ng Hiyas Library</h2>
+        <p>Libralend was developed to modernize how residents interact with the beloved Kaban ng Hiyas Library. We believe that access to books and educational resources should be seamless and equitable.</p>
+        <p>Today, our catalog houses over 2,400 titles across fiction, non-fiction, Filipino literature, and academic references — all easily searchable and free to borrow for every registered community member.</p>
+        <button class="btn btn-outline" onclick="goTo('register')" style="margin-top:0.5rem; border-color:var(--accent); color:var(--accent);">
           <i class="fas fa-heart"></i> Become a member
         </button>
       </div>
-      <div>
-        <div class="hours-card">
-          <h3><i class="fas fa-clock" style="color:var(--accent-mid); margin-right:8px;"></i>Library hours</h3>
-          <div class="hours-row"><span class="day">Monday – Friday</span><span class="time">8:00 AM – 7:00 PM</span></div>
-          <div class="hours-row"><span class="day">Saturday</span><span class="time">9:00 AM – 5:00 PM</span></div>
-          <div class="hours-row"><span class="day">Sunday</span><span class="time">10:00 AM – 3:00 PM</span></div>
-          <div class="hours-row"><span class="day">Holidays</span><span class="time">Closed</span></div>
+      <div class="hours-card">
+          <h3><i class="fas fa-clock" style="color:var(--gold); margin-right:8px;"></i>Physical Library Hours</h3>
+          <div class="hours-row">
+            <span class="day">Monday – Thursday</span>
+            <span class="time">8:00 AM – 5:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Lunch Break</span>
+            <span class="time">12:00 NN – 1:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Sunday</span>
+            <span class="time">Closed</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Holidays</span>
+            <span class="time">Closed</span>
+          </div>
         </div>
-        <ul class="values-list" style="margin-top:1.5rem;">
-          <li><span class="dot"></span>Free for all barangay residents</li>
-          <li><span class="dot"></span>No overdue fines for children under 12</li>
-          <li><span class="dot"></span>Book donation drives every quarter</li>
-          <li><span class="dot"></span>Wheelchair accessible facility</li>
-        </ul>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+      <div class="footer-content">
+          <div class="footer-text">
+              <p>&copy; 2026 Libralend.</p>
+              <p class="thesis-title">"Effectiveness of Libralend as a Web-based Library Lending System for Kaban ng Hiyas Library"</p>
+              <p class="university-name">Polytechnic University of the Philippines</p>
+          </div>
+          <div class="footer-links">
+    <a href="#" onclick="goTo('terms'); return false;">Terms of Service</a>
+    <a href="#" onclick="goTo('privacy'); return false;">Privacy Policy</a>
+    <a href="#" onclick="goTo('contact'); return false;">Contact Support</a>
+</div>
       </div>
-    </div>
-  </div>
-
-  <div style="text-align:center; padding: 3rem 2rem;">
-    <p class="serif" style="font-style:italic; color:var(--accent); font-size:1.1rem; margin-bottom:0.5rem;">"The more that you read, the more things you will know."</p>
-    <p style="font-size:13px; color:var(--ink-muted);">— Dr. Seuss</p>
-    <div style="margin-top:2rem;">
-      <button class="btn btn-primary" onclick="goTo('register')" style="padding:12px 32px;">Get started — it's free</button>
-    </div>
-  </div>
-
-  <div class="footer-strip">
-    © 2025 Bayanihan Community Library · Brgy. San Isidro · Built with <span>♥</span> by volunteers
-  </div>
+  </footer>
 </div>
 
 <!-- ================================ PAGE: LOGIN ================================ -->
 <div id="page-login" class="page">
-  <div class="auth-wrap">
-    <div class="auth-card">
-      <div class="logo-block">
-        <div style="font-size:2.5rem; margin-bottom:0.5rem;">📚</div>
-        <h2>Welcome back</h2>
-        <p>Sign in to your library account</p>
+  <div class="login-split-container">
+    
+    <!-- LEFT BRANDING PANEL -->
+    <div class="login-left-panel">
+      <div class="panel-headline">
+        <h1>Borrow books.<br/><span>Share stories.</span><br/>Build community.</h1>
+        <p>Join thousands of readers in Mandaluyong lending and discovering books with their neighbors every day.</p>
       </div>
-      <div class="form-group">
-        <label>Username or email</label>
-        <input type="text" id="login-user" placeholder="e.g. juandelacruz" />
+
+      <div class="book-shelf">
+        <div class="book-card-floating">
+          <div class="book-card-title">Noli Me Tangere</div>
+          <div class="book-card-author">José Rizal</div>
+          <span class="book-card-badge badge-available">Available</span>
+        </div>
+        <div class="book-card-floating">
+          <div class="book-card-title">Sapiens</div>
+          <div class="book-card-author">Yuval Noah Harari</div>
+          <span class="book-card-badge badge-lent">Lent out</span>
+        </div>
+        <div class="book-card-floating">
+          <div class="book-card-title">The Alchemist</div>
+          <div class="book-card-author">Paulo Coelho</div>
+          <span class="book-card-badge badge-available">Available</span>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" id="login-pass" placeholder="Your password" />
+
+      <div class="panel-stats">
+        <div class="stat">
+          <div class="stat-num">2,400+</div>
+          <div class="stat-label">Books in collection</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1,100</div>
+          <div class="stat-label">Active members</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Free for residents</div>
+        </div>
       </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; font-size:13px;">
-        <label style="display:flex; gap:8px; align-items:center; font-size:13px; cursor:pointer; margin:0;">
-          <input type="checkbox" style="width:auto;" /> Remember me
-        </label>
-        <a href="#" style="color:var(--accent); text-decoration:none;" onclick="showToast('Password reset link sent to your email.', 'success')">Forgot password?</a>
-      </div>
-      <button class="btn btn-primary btn-full" onclick="doLogin()">Sign in</button>
-      <hr class="divider">
-      <button class="btn btn-outline btn-full" onclick="doAdminLogin()">
-        <i class="fas fa-shield-alt"></i> Sign in as Admin (demo)
-      </button>
-      <p class="auth-switch">Don't have an account? <a onclick="goTo('register')">Create one</a></p>
-      <p style="font-size:12px; color:var(--ink-muted); text-align:center; margin-top:8px;">Demo: use any username/password</p>
     </div>
+
+    <!-- RIGHT FORM PANEL -->
+    <div class="login-right-panel">
+      <div class="accent-strip"></div>
+      
+      <div class="form-header">
+        <h2>Welcome back</h2>
+        <p>Sign in to your Kaban ng Hiyas account</p>
+      </div>
+
+      <div class="form-group">
+        <label for="login-user">Username or Email</label>
+        <!-- Re-used your system's ID: login-user -->
+        <input type="text" id="login-user" placeholder="you@example.com" />
+      </div>
+
+      <div class="form-group">
+        <label for="login-pass">Password</label>
+        <input type="password" id="login-pass" placeholder="Enter your password" />
+      </div>
+
+      <div class="form-row" style="margin-bottom: 24px; margin-top: -8px;">
+        <label class="remember-me">
+          <input type="checkbox" id="remember" /> Remember me
+        </label>
+        <a href="#" class="forgot-link" onclick="showToast('Password reset link sent to your email.', 'success')">Forgot password?</a>
+      </div>
+
+      <!-- Uses your system's doLogin() function -->
+      <button id="login-btn" class="btn-signin" onclick="doLogin()">Sign in</button>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">or continue as</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <button class="btn-guest" onclick="doAdminLogin()">Sign in as Admin (Demo)</button>
+
+      <div class="signup-cta">
+        New to Libralend? <a href="#" onclick="goTo('register')">Create an account</a>
+      </div>
+    </div>
+    
   </div>
 </div>
 
@@ -768,72 +227,19 @@
   <div class="auth-wrap" style="padding:2rem; align-items:flex-start; padding-top:3rem;">
     <div class="auth-card wide">
       <div class="logo-block">
-        <div style="font-size:2.5rem; margin-bottom:0.5rem;">📚</div>
+        <div style="font-size:2.5rem; margin-bottom:0.5rem; color: var(--accent);"><i class="fas fa-book-open"></i></div>
         <h2>Create your account</h2>
-        <p>Join the Bayanihan Community Library — free for all residents</p>
+        <p>Join Libralend — free for all residents</p>
       </div>
-
-      <h3 style="font-size:13px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-muted); margin-bottom:1rem;">Personal information</h3>
       <div class="form-row">
         <div class="form-group"><label>First name *</label><input type="text" id="reg-fname" placeholder="Juan" /></div>
         <div class="form-group"><label>Last name *</label><input type="text" id="reg-lname" placeholder="Dela Cruz" /></div>
       </div>
-      <div class="form-row">
-        <div class="form-group"><label>Date of birth *</label><input type="date" id="reg-dob" /></div>
-        <div class="form-group">
-          <label>Gender</label>
-          <select id="reg-gender">
-            <option value="">Prefer not to say</option>
-            <option>Male</option><option>Female</option><option>Non-binary</option><option>Other</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Phone number</label><input type="tel" id="reg-phone" placeholder="+63 9XX XXX XXXX" /></div>
-        <div class="form-group"><label>Occupation</label><input type="text" id="reg-job" placeholder="Student, teacher, etc." /></div>
-      </div>
-
-      <hr class="divider">
-      <h3 style="font-size:13px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-muted); margin-bottom:1rem;">Address</h3>
-      <div class="form-group"><label>Street address *</label><input type="text" id="reg-addr" placeholder="Blk 5 Lot 12, Sampaguita St." /></div>
-      <div class="form-row-3">
-        <div class="form-group"><label>Barangay *</label><input type="text" id="reg-brgy" placeholder="San Isidro" /></div>
-        <div class="form-group"><label>City / Municipality</label><input type="text" id="reg-city" placeholder="Quezon City" /></div>
-        <div class="form-group"><label>ZIP code</label><input type="text" id="reg-zip" placeholder="1100" /></div>
-      </div>
-
-      <hr class="divider">
-      <h3 style="font-size:13px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-muted); margin-bottom:1rem;">Account credentials</h3>
       <div class="form-group"><label>Email address *</label><input type="email" id="reg-email" placeholder="juan@email.com" /></div>
       <div class="form-row">
         <div class="form-group"><label>Username *</label><input type="text" id="reg-uname" placeholder="juandelacruz" /></div>
         <div class="form-group"><label>Password *</label><input type="password" id="reg-pass" placeholder="Min. 8 characters" /></div>
       </div>
-
-      <hr class="divider">
-      <h3 style="font-size:13px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-muted); margin-bottom:1rem;">Reading preferences</h3>
-      <div class="form-group">
-        <label>Favorite genres (select all that apply)</label>
-        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;">
-          <label style="margin:0; font-weight:400; font-size:14px; cursor:pointer; display:flex; align-items:center; gap:6px; padding:6px 14px; border:1.5px solid var(--border); border-radius:100px; background:#fff;">
-            <input type="checkbox" value="Fiction" style="width:auto;"> Fiction</label>
-          <label style="margin:0; font-weight:400; font-size:14px; cursor:pointer; display:flex; align-items:center; gap:6px; padding:6px 14px; border:1.5px solid var(--border); border-radius:100px; background:#fff;">
-            <input type="checkbox" value="Non-fiction" style="width:auto;"> Non-fiction</label>
-          <label style="margin:0; font-weight:400; font-size:14px; cursor:pointer; display:flex; align-items:center; gap:6px; padding:6px 14px; border:1.5px solid var(--border); border-radius:100px; background:#fff;">
-            <input type="checkbox" value="Filipino Lit" style="width:auto;"> Filipino Lit</label>
-          <label style="margin:0; font-weight:400; font-size:14px; cursor:pointer; display:flex; align-items:center; gap:6px; padding:6px 14px; border:1.5px solid var(--border); border-radius:100px; background:#fff;">
-            <input type="checkbox" value="Children's" style="width:auto;"> Children's</label>
-          <label style="margin:0; font-weight:400; font-size:14px; cursor:pointer; display:flex; align-items:center; gap:6px; padding:6px 14px; border:1.5px solid var(--border); border-radius:100px; background:#fff;">
-            <input type="checkbox" value="History" style="width:auto;"> History</label>
-          <label style="margin:0; font-weight:400; font-size:14px; cursor:pointer; display:flex; align-items:center; gap:6px; padding:6px 14px; border:1.5px solid var(--border); border-radius:100px; background:#fff;">
-            <input type="checkbox" value="Science" style="width:auto;"> Science</label>
-          <label style="margin:0; font-weight:400; font-size:14px; cursor:pointer; display:flex; align-items:center; gap:6px; padding:6px 14px; border:1.5px solid var(--border); border-radius:100px; background:#fff;">
-            <input type="checkbox" value="Self-Help" style="width:auto;"> Self-Help</label>
-          <label style="margin:0; font-weight:400; font-size:14px; cursor:pointer; display:flex; align-items:center; gap:6px; padding:6px 14px; border:1.5px solid var(--border); border-radius:100px; background:#fff;">
-            <input type="checkbox" value="Mystery" style="width:auto;"> Mystery</label>
-        </div>
-      </div>
-
       <button class="btn btn-primary btn-full" style="padding:12px; font-size:15px; margin-top:0.5rem;" onclick="doRegister()">
         <i class="fas fa-user-plus"></i> Create account
       </button>
@@ -842,7 +248,6 @@
   </div>
 </div>
 
-<!-- ================================ PAGE: CATALOG ================================ -->
 <div id="page-catalog" class="page">
   <div class="catalog-header">
     <h2>Book catalog</h2>
@@ -858,24 +263,12 @@
         <option>Children's</option><option>History</option><option>Science</option>
         <option>Self-Help</option><option>Mystery</option><option>Fantasy</option>
       </select>
-      <select class="filter-select" id="catalog-avail" onchange="filterCatalog()">
-        <option value="">All availability</option>
-        <option value="available">Available now</option>
-        <option value="borrowed">Checked out</option>
-      </select>
-      <select class="filter-select" id="catalog-sort" onchange="filterCatalog()">
-        <option value="title">Sort: Title A-Z</option>
-        <option value="author">Sort: Author</option>
-        <option value="rating">Sort: Rating</option>
-        <option value="new">Sort: Newest</option>
-      </select>
     </div>
     <p id="catalog-count" style="font-size:13px; color:var(--ink-muted); margin-top:10px;"></p>
   </div>
   <div class="book-grid" id="book-grid"></div>
 </div>
 
-<!-- ================================ PAGE: DASHBOARD ================================ -->
 <div id="page-dashboard" class="page">
   <div class="dash-wrap">
     <aside class="dash-sidebar">
@@ -883,413 +276,145 @@
         <div class="avatar-lg" id="dashAvatar">?</div>
         <h4 id="dashName">—</h4>
         <p id="dashEmail">—</p>
-        <p class="member-since">Member since June 2025</p>
       </div>
       <nav class="sidebar-nav">
         <a onclick="showDashSection('ds-overview')" class="active" id="sn-overview"><i class="fas fa-home"></i> Overview</a>
         <a onclick="showDashSection('ds-borrowed')" id="sn-borrowed"><i class="fas fa-book"></i> Currently borrowed</a>
-        <a onclick="showDashSection('ds-history')" id="sn-history"><i class="fas fa-history"></i> Reading history</a>
-        <a onclick="showDashSection('ds-holds')" id="sn-holds"><i class="fas fa-clock"></i> Holds & requests</a>
-        <a onclick="showDashSection('ds-wishlist')" id="sn-wishlist"><i class="fas fa-heart"></i> Wishlist</a>
-        <a onclick="showDashSection('ds-reviews')" id="sn-reviews"><i class="fas fa-star"></i> My reviews</a>
-        <a onclick="showDashSection('ds-notifs')" id="sn-notifs"><i class="fas fa-bell"></i> Notifications <span class="badge badge-red" style="margin-left:auto;">2</span></a>
-        <a onclick="showDashSection('ds-profile')" id="sn-profile"><i class="fas fa-user"></i> Profile</a>
       </nav>
     </aside>
-
     <main class="dash-main">
-      <!-- OVERVIEW -->
       <div class="dash-section active" id="ds-overview">
         <h2 class="dash-title">Good morning, <span id="dashFirst">friend</span>! 👋</h2>
         <p class="dash-sub">Here's a snapshot of your library activity.</p>
         <div class="stat-cards">
           <div class="stat-card accent"><div class="sc-label">Currently borrowed</div><div class="sc-value">3</div><div class="sc-sub">of 5 slots used</div></div>
           <div class="stat-card"><div class="sc-label">Books read total</div><div class="sc-value">27</div><div class="sc-sub">since joining</div></div>
-          <div class="stat-card"><div class="sc-label">Active holds</div><div class="sc-value">1</div><div class="sc-sub">waiting in queue</div></div>
-          <div class="stat-card"><div class="sc-label">Reviews written</div><div class="sc-value">9</div><div class="sc-sub">community contributions</div></div>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
-          <div class="card card-pad">
-            <h3 style="margin-bottom:1rem; font-size:1rem;">Due soon</h3>
-            <div style="display:flex; flex-direction:column; gap:12px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <div><strong>Noli Me Tangere</strong><div style="font-size:12px; color:var(--ink-muted);">José Rizal</div></div>
-                <span class="badge badge-amber">Due in 3 days</span>
-              </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <div><strong>Florante at Laura</strong><div style="font-size:12px; color:var(--ink-muted);">Francisco Balagtas</div></div>
-                <span class="badge badge-green">Due in 9 days</span>
-              </div>
-              <div style="display:flex; justify-content:space-between; align-items:center; font-size:14px;">
-                <div><strong>The Alchemist</strong><div style="font-size:12px; color:var(--ink-muted);">Paulo Coelho</div></div>
-                <span class="badge badge-green">Due in 12 days</span>
-              </div>
-            </div>
-          </div>
-          <div class="card card-pad">
-            <h3 style="margin-bottom:1rem; font-size:1rem;">Reading streak</h3>
-            <div style="text-align:center; padding:1rem 0;">
-              <div style="font-size:3rem; font-family:'Lora',serif; font-weight:600; color:var(--accent);">12</div>
-              <div style="font-size:14px; color:var(--ink-muted);">books this year</div>
-            </div>
-            <div>
-              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
-                <span style="color:var(--ink-muted);">Annual goal: 20 books</span><span style="color:var(--accent); font-weight:500;">60%</span>
-              </div>
-              <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
-            </div>
-          </div>
         </div>
       </div>
-
-      <!-- BORROWED -->
       <div class="dash-section" id="ds-borrowed">
         <h2 class="dash-title">Currently borrowed</h2>
         <p class="dash-sub">You have 3 books checked out. Max 5 allowed.</p>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Book</th><th>Author</th><th>Borrowed</th><th>Due date</th><th>Status</th><th>Action</th></tr></thead>
+            <thead><tr><th>Book</th><th>Author</th><th>Borrowed</th><th>Due date</th><th>Status</th></tr></thead>
             <tbody>
-              <tr><td><strong>Noli Me Tangere</strong></td><td>José Rizal</td><td>Jun 1, 2025</td><td>Jun 15, 2025</td><td><span class="badge badge-amber">Due soon</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Renewal confirmed! New due date: Jun 29.', 'success')">Renew</button></td></tr>
-              <tr><td><strong>Florante at Laura</strong></td><td>Francisco Balagtas</td><td>Jun 3, 2025</td><td>Jun 21, 2025</td><td><span class="badge badge-green">On time</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Renewal confirmed!', 'success')">Renew</button></td></tr>
-              <tr><td><strong>The Alchemist</strong></td><td>Paulo Coelho</td><td>Jun 5, 2025</td><td>Jun 24, 2025</td><td><span class="badge badge-green">On time</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Renewal confirmed!', 'success')">Renew</button></td></tr>
+              <tr><td><strong>Noli Me Tangere</strong></td><td>José Rizal</td><td>Jun 1, 2026</td><td>Jun 15, 2026</td><td><span class="badge badge-amber">Due soon</span></td></tr>
             </tbody>
           </table>
-        </div>
-      </div>
-
-      <!-- HISTORY -->
-      <div class="dash-section" id="ds-history">
-        <h2 class="dash-title">Reading history</h2>
-        <p class="dash-sub">Every book you've ever borrowed from this library.</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Book</th><th>Author</th><th>Genre</th><th>Borrowed</th><th>Returned</th><th>Rating</th></tr></thead>
-            <tbody>
-              <tr><td><strong>Ibong Adarna</strong></td><td>Anonymous</td><td><span class="badge badge-blue">Filipino Lit</span></td><td>May 3</td><td>May 17</td><td>⭐⭐⭐⭐⭐</td></tr>
-              <tr><td><strong>Sapiens</strong></td><td>Yuval Noah Harari</td><td><span class="badge badge-gray">Non-fiction</span></td><td>Apr 10</td><td>Apr 24</td><td>⭐⭐⭐⭐</td></tr>
-              <tr><td><strong>Harry Potter 1</strong></td><td>J.K. Rowling</td><td><span class="badge badge-gray">Fantasy</span></td><td>Mar 20</td><td>Apr 3</td><td>⭐⭐⭐⭐⭐</td></tr>
-              <tr><td><strong>Rich Dad Poor Dad</strong></td><td>Robert Kiyosaki</td><td><span class="badge badge-gray">Self-Help</span></td><td>Feb 14</td><td>Feb 28</td><td>⭐⭐⭐</td></tr>
-              <tr><td><strong>El Filibusterismo</strong></td><td>José Rizal</td><td><span class="badge badge-blue">Filipino Lit</span></td><td>Jan 5</td><td>Jan 19</td><td>⭐⭐⭐⭐⭐</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- HOLDS -->
-      <div class="dash-section" id="ds-holds">
-        <h2 class="dash-title">Holds & requests</h2>
-        <p class="dash-sub">Books you're waiting for will appear here.</p>
-        <div class="card card-pad" style="margin-bottom:1rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-            <div>
-              <h4 style="font-size:15px;">Ang Mga Ibong Mandaragit</h4>
-              <p style="font-size:13px; color:var(--ink-muted);">Amado V. Hernandez · Filipino Lit</p>
-              <p style="font-size:13px; margin-top:4px;">You are <strong style="color:var(--accent);">#2</strong> in the queue</p>
-            </div>
-            <div style="text-align:right;">
-              <span class="badge badge-amber">On hold</span>
-              <p style="font-size:12px; color:var(--ink-muted); margin-top:6px;">Est. available: ~2 weeks</p>
-              <button class="btn btn-outline btn-sm" style="margin-top:8px;" onclick="showToast('Hold cancelled.', 'success')">Cancel hold</button>
-            </div>
-          </div>
-        </div>
-        <p style="font-size:14px; color:var(--ink-muted);">Don't see the book you want? <a class="btn-ghost" onclick="goTo('catalog')">Browse the catalog →</a></p>
-      </div>
-
-      <!-- WISHLIST -->
-      <div class="dash-section" id="ds-wishlist">
-        <h2 class="dash-title">My wishlist</h2>
-        <p class="dash-sub">Books you've saved to read later.</p>
-        <div id="wishlist-container">
-          <div style="display:flex; flex-direction:column; gap:12px;">
-            <div class="card card-pad" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-              <div><h4>One Hundred Years of Solitude</h4><p style="font-size:13px; color:var(--ink-muted);">Gabriel García Márquez · Fiction</p></div>
-              <div style="display:flex; gap:8px;">
-                <span class="badge badge-green">Available</span>
-                <button class="btn btn-green btn-sm" onclick="showToast('Borrow request submitted!', 'success')">Borrow</button>
-                <button class="btn btn-outline btn-sm" onclick="this.closest('.card').remove(); showToast('Removed from wishlist.')">Remove</button>
-              </div>
-            </div>
-            <div class="card card-pad" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-              <div><h4>Banaag at Sikat</h4><p style="font-size:13px; color:var(--ink-muted);">Lope K. Santos · Filipino Lit</p></div>
-              <div style="display:flex; gap:8px;">
-                <span class="badge badge-red">Checked out</span>
-                <button class="btn btn-outline btn-sm" onclick="showToast('Hold placed! You are #1 in queue.', 'success')">Place hold</button>
-                <button class="btn btn-outline btn-sm" onclick="this.closest('.card').remove(); showToast('Removed from wishlist.')">Remove</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- REVIEWS -->
-      <div class="dash-section" id="ds-reviews">
-        <h2 class="dash-title">My reviews</h2>
-        <p class="dash-sub">Your contributions to the community.</p>
-        <div class="card card-pad">
-          <div class="review-item">
-            <div class="review-meta">
-              <strong style="font-size:15px;">Noli Me Tangere</strong>
-              <span class="stars">★★★★★</span>
-              <span style="font-size:12px; color:var(--ink-muted);">May 20, 2025</span>
-            </div>
-            <p style="font-size:14px; color:var(--ink-soft);">A timeless masterpiece that every Filipino must read. Rizal's portrayal of colonial society is painfully relevant even today. The love story is touching but the social commentary is what makes it truly great.</p>
-          </div>
-          <div class="review-item">
-            <div class="review-meta">
-              <strong style="font-size:15px;">Sapiens</strong>
-              <span class="stars">★★★★</span>
-              <span style="font-size:12px; color:var(--ink-muted);">Apr 28, 2025</span>
-            </div>
-            <p style="font-size:14px; color:var(--ink-soft);">Fascinating overview of human history. Some parts felt oversimplified but overall a mind-expanding read. Recommend for anyone curious about where we came from.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- NOTIFICATIONS -->
-      <div class="dash-section" id="ds-notifs">
-        <h2 class="dash-title">Notifications</h2>
-        <p class="dash-sub">Updates about your books and library activity.</p>
-        <div class="card" style="overflow:hidden;">
-          <div class="notif-item" style="background:var(--accent-light);">
-            <div class="notif-dot" style="background:var(--accent);"></div>
-            <div class="notif-icon" style="background:var(--accent-light); color:var(--accent);"><i class="fas fa-clock"></i></div>
-            <div>
-              <p style="font-size:14px; font-weight:500;">Due date reminder</p>
-              <p style="font-size:13px; color:var(--ink-muted);">Noli Me Tangere is due in 3 days (Jun 15). Renew now or return by then to avoid a hold on future borrowing.</p>
-              <p style="font-size:12px; color:var(--ink-muted); margin-top:4px;">Today, 8:00 AM</p>
-            </div>
-          </div>
-          <div class="notif-item" style="background:var(--accent-light);">
-            <div class="notif-dot"></div>
-            <div class="notif-icon" style="background:var(--green-light); color:var(--green);"><i class="fas fa-check-circle"></i></div>
-            <div>
-              <p style="font-size:14px; font-weight:500;">Hold update</p>
-              <p style="font-size:13px; color:var(--ink-muted);">You moved from #3 to #2 in the queue for "Ang Mga Ibong Mandaragit". Almost there!</p>
-              <p style="font-size:12px; color:var(--ink-muted); margin-top:4px;">Yesterday, 2:15 PM</p>
-            </div>
-          </div>
-          <div class="notif-item">
-            <div style="width:8px;"></div>
-            <div class="notif-icon" style="background:var(--blue-light); color:var(--blue);"><i class="fas fa-book-open"></i></div>
-            <div>
-              <p style="font-size:14px; font-weight:500;">New arrivals in Filipino Lit</p>
-              <p style="font-size:13px; color:var(--ink-muted);">12 new books were added to the Filipino Literature section based on your reading preferences.</p>
-              <p style="font-size:12px; color:var(--ink-muted); margin-top:4px;">Jun 5, 2025</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROFILE -->
-      <div class="dash-section" id="ds-profile">
-        <h2 class="dash-title">Profile settings</h2>
-        <p class="dash-sub">Update your personal information and preferences.</p>
-        <div class="card card-pad" style="max-width:600px;">
-          <div class="form-row">
-            <div class="form-group"><label>First name</label><input type="text" id="prof-fname" /></div>
-            <div class="form-group"><label>Last name</label><input type="text" id="prof-lname" /></div>
-          </div>
-          <div class="form-group"><label>Email</label><input type="email" id="prof-email" /></div>
-          <div class="form-group"><label>Phone</label><input type="tel" placeholder="+63 9XX XXX XXXX" /></div>
-          <div class="form-group"><label>Address</label><input type="text" placeholder="Street, Barangay, City" /></div>
-          <hr class="divider">
-          <div class="form-group"><label>New password (leave blank to keep current)</label><input type="password" placeholder="New password" /></div>
-          <div class="form-group"><label>Confirm new password</label><input type="password" placeholder="Confirm new password" /></div>
-          <button class="btn btn-primary" onclick="showToast('Profile updated successfully!', 'success')">Save changes</button>
         </div>
       </div>
     </main>
   </div>
 </div>
 
-<!-- ================================ PAGE: ADMIN ================================ -->
 <div id="page-admin" class="page">
   <div class="dash-wrap">
     <aside class="dash-sidebar">
       <div class="user-block">
-        <div class="avatar-lg" style="background:var(--blue);">A</div>
+        <div class="avatar-lg" style="background:var(--accent);">A</div>
         <h4>Library Admin</h4>
-        <p>admin@bayanihanlib.ph</p>
-        <p class="member-since"><span class="badge badge-blue" style="font-size:11px;">Administrator</span></p>
+        <p>admin@libralend.ph</p>
       </div>
       <nav class="sidebar-nav">
         <a onclick="showAdminSection('as-overview')" class="active" id="asn-overview"><i class="fas fa-chart-bar"></i> Overview</a>
         <a onclick="showAdminSection('as-books')" id="asn-books"><i class="fas fa-book"></i> Manage books</a>
-        <a onclick="showAdminSection('as-borrowed')" id="asn-borrowed"><i class="fas fa-exchange-alt"></i> Borrowed books</a>
-        <a onclick="showAdminSection('as-members')" id="asn-members"><i class="fas fa-users"></i> Members</a>
-        <a onclick="showAdminSection('as-holds')" id="asn-holds"><i class="fas fa-clock"></i> Holds queue</a>
-        <a onclick="showAdminSection('as-reports')" id="asn-reports"><i class="fas fa-chart-line"></i> Reports</a>
       </nav>
     </aside>
-
     <main class="dash-main">
-      <!-- ADMIN OVERVIEW -->
       <div class="dash-section active" id="as-overview">
         <h2 class="dash-title">Admin overview</h2>
         <p class="dash-sub">Library activity at a glance.</p>
         <div class="stat-cards">
           <div class="stat-card accent"><div class="sc-label">Total books</div><div class="sc-value">2,412</div><div class="sc-sub">in collection</div></div>
           <div class="stat-card"><div class="sc-label">Books borrowed</div><div class="sc-value">187</div><div class="sc-sub">currently out</div></div>
-          <div class="stat-card"><div class="sc-label">Active members</div><div class="sc-value">1,104</div><div class="sc-sub">registered users</div></div>
-          <div class="stat-card"><div class="sc-label">Holds queue</div><div class="sc-value">34</div><div class="sc-sub">pending holds</div></div>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
-          <div class="card card-pad">
-            <h3 style="font-size:1rem; margin-bottom:1rem;">Overdue books <span class="badge badge-red" style="margin-left:6px;">7</span></h3>
-            <div style="display:flex; flex-direction:column; gap:10px;">
-              <div style="display:flex; justify-content:space-between; font-size:13px; padding:8px; background:var(--red-light); border-radius:var(--radius);">
-                <div><strong>Florante at Laura</strong><br><span style="color:var(--ink-muted);">Maria Santos</span></div>
-                <span style="color:var(--red); font-weight:500;">4 days overdue</span>
-              </div>
-              <div style="display:flex; justify-content:space-between; font-size:13px; padding:8px; background:var(--red-light); border-radius:var(--radius);">
-                <div><strong>The Great Gatsby</strong><br><span style="color:var(--ink-muted);">Pedro Reyes</span></div>
-                <span style="color:var(--red); font-weight:500;">2 days overdue</span>
-              </div>
-            </div>
-            <button class="btn btn-outline btn-sm" style="margin-top:12px; width:100%;" onclick="showToast('Reminder emails sent to 7 overdue borrowers.', 'success')"><i class="fas fa-envelope"></i> Send reminders</button>
-          </div>
-          <div class="card card-pad">
-            <h3 style="font-size:1rem; margin-bottom:1rem;">Top borrowed this month</h3>
-            <div style="display:flex; flex-direction:column; gap:8px; font-size:13px;">
-              <div style="display:flex; justify-content:space-between;"><span>1. Noli Me Tangere</span><span class="badge badge-gray">18 borrows</span></div>
-              <div style="display:flex; justify-content:space-between;"><span>2. The Alchemist</span><span class="badge badge-gray">14 borrows</span></div>
-              <div style="display:flex; justify-content:space-between;"><span>3. Sapiens</span><span class="badge badge-gray">11 borrows</span></div>
-              <div style="display:flex; justify-content:space-between;"><span>4. Harry Potter 1</span><span class="badge badge-gray">9 borrows</span></div>
-              <div style="display:flex; justify-content:space-between;"><span>5. Rich Dad Poor Dad</span><span class="badge badge-gray">8 borrows</span></div>
-            </div>
-          </div>
         </div>
       </div>
-
-      <!-- MANAGE BOOKS -->
       <div class="dash-section" id="as-books">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:12px;">
-          <div>
-            <h2 class="dash-title" style="margin-bottom:0.1rem;">Manage books</h2>
-            <p class="dash-sub" style="margin-bottom:0;">Add, edit, or remove books from the catalog.</p>
-          </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+          <h2 class="dash-title">Manage books</h2>
           <button class="btn btn-primary" onclick="openBookModal()"><i class="fas fa-plus"></i> Add new book</button>
         </div>
-
-        <div style="display:flex; gap:10px; margin-bottom:1.25rem; flex-wrap:wrap;">
-          <div class="search-box" style="flex:1; min-width:200px;">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search catalog…" oninput="filterAdminBooks(this.value)">
-          </div>
-          <select class="filter-select" onchange="filterAdminBooks()">
-            <option>All genres</option>
-            <option>Fiction</option><option>Non-fiction</option><option>Filipino Lit</option>
-          </select>
-        </div>
-
         <div class="table-wrap">
-          <table id="admin-book-table">
-            <thead><tr><th>Title</th><th>Author</th><th>Genre</th><th>Year</th><th>Copies</th><th>Available</th><th>Status</th><th>Actions</th></tr></thead>
+          <table>
+            <thead><tr><th>Title</th><th>Author</th><th>Genre</th><th>Status</th></tr></thead>
             <tbody id="admin-book-tbody"></tbody>
           </table>
-        </div>
-      </div>
-
-      <!-- BORROWED BOOKS -->
-      <div class="dash-section" id="as-borrowed">
-        <h2 class="dash-title">Borrowed books</h2>
-        <p class="dash-sub">All currently checked-out books and their borrowers.</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Book title</th><th>Borrower</th><th>Member ID</th><th>Borrowed</th><th>Due date</th><th>Status</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td><strong>Noli Me Tangere</strong></td><td>Juan dela Cruz</td><td>#00012</td><td>Jun 1</td><td>Jun 15</td><td><span class="badge badge-amber">Due soon</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Book marked as returned.', 'success')">Mark returned</button></td></tr>
-              <tr><td><strong>The Alchemist</strong></td><td>Maria Santos</td><td>#00045</td><td>Jun 3</td><td>Jun 21</td><td><span class="badge badge-green">On time</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Book marked as returned.', 'success')">Mark returned</button></td></tr>
-              <tr><td><strong>Florante at Laura</strong></td><td>Pedro Reyes</td><td>#00089</td><td>May 28</td><td>Jun 11</td><td><span class="badge badge-red">Overdue</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Book marked as returned.', 'success')">Mark returned</button></td></tr>
-              <tr><td><strong>Sapiens</strong></td><td>Ana Gomez</td><td>#00123</td><td>Jun 4</td><td>Jun 22</td><td><span class="badge badge-green">On time</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Book marked as returned.', 'success')">Mark returned</button></td></tr>
-              <tr><td><strong>Harry Potter 1</strong></td><td>Carlo Mendoza</td><td>#00201</td><td>Jun 2</td><td>Jun 20</td><td><span class="badge badge-green">On time</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Book marked as returned.', 'success')">Mark returned</button></td></tr>
-              <tr><td><strong>Rich Dad Poor Dad</strong></td><td>Liza Cruz</td><td>#00344</td><td>May 30</td><td>Jun 13</td><td><span class="badge badge-amber">Due soon</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Book marked as returned.', 'success')">Mark returned</button></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- MEMBERS -->
-      <div class="dash-section" id="as-members">
-        <h2 class="dash-title">Members</h2>
-        <p class="dash-sub">All registered library members.</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Age</th><th>Joined</th><th>Borrowed</th><th>Status</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td>#00012</td><td><strong>Juan dela Cruz</strong></td><td>juan@email.com</td><td>28</td><td>Jan 2024</td><td>3 books</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Member details loaded.')">View</button></td></tr>
-              <tr><td>#00045</td><td><strong>Maria Santos</strong></td><td>maria@email.com</td><td>35</td><td>Mar 2024</td><td>1 book</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Member details loaded.')">View</button></td></tr>
-              <tr><td>#00089</td><td><strong>Pedro Reyes</strong></td><td>pedro@email.com</td><td>19</td><td>Sep 2024</td><td>2 books</td><td><span class="badge badge-amber">Overdue</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Member details loaded.')">View</button></td></tr>
-              <tr><td>#00123</td><td><strong>Ana Gomez</strong></td><td>ana@email.com</td><td>42</td><td>Nov 2024</td><td>1 book</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Member details loaded.')">View</button></td></tr>
-              <tr><td>#00201</td><td><strong>Carlo Mendoza</strong></td><td>carlo@email.com</td><td>15</td><td>Feb 2025</td><td>1 book</td><td><span class="badge badge-green">Active</span></td><td><button class="btn btn-outline btn-sm" onclick="showToast('Member details loaded.')">View</button></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- HOLDS -->
-      <div class="dash-section" id="as-holds">
-        <h2 class="dash-title">Holds queue</h2>
-        <p class="dash-sub">Members waiting for books to become available.</p>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Book</th><th>Member</th><th>Queue position</th><th>Date placed</th><th>Est. wait</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td><strong>Ang Mga Ibong Mandaragit</strong></td><td>Juan dela Cruz</td><td><span class="badge badge-blue">#2</span></td><td>Jun 3</td><td>~2 weeks</td><td><button class="btn btn-outline btn-sm" onclick="showToast('Notified member.', 'success')">Notify</button></td></tr>
-              <tr><td><strong>El Filibusterismo</strong></td><td>Maria Santos</td><td><span class="badge badge-green">#1</span></td><td>Jun 5</td><td>~1 week</td><td><button class="btn btn-outline btn-sm" onclick="showToast('Notified member.', 'success')">Notify</button></td></tr>
-              <tr><td><strong>Banaag at Sikat</strong></td><td>Ana Gomez</td><td><span class="badge badge-blue">#1</span></td><td>Jun 7</td><td>~3 weeks</td><td><button class="btn btn-outline btn-sm" onclick="showToast('Notified member.', 'success')">Notify</button></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- REPORTS -->
-      <div class="dash-section" id="as-reports">
-        <h2 class="dash-title">Reports</h2>
-        <p class="dash-sub">Library statistics and downloadable reports.</p>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
-          <div class="card card-pad">
-            <h3 style="font-size:1rem; margin-bottom:1rem;">Genre popularity</h3>
-            <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
-              <div><div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span>Filipino Lit</span><span style="color:var(--accent); font-weight:500;">34%</span></div><div class="progress-bar"><div class="progress-fill" style="width:34%;"></div></div></div>
-              <div><div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span>Fiction</span><span style="color:var(--accent); font-weight:500;">28%</span></div><div class="progress-bar"><div class="progress-fill" style="width:28%;"></div></div></div>
-              <div><div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span>Self-Help</span><span style="color:var(--accent); font-weight:500;">16%</span></div><div class="progress-bar"><div class="progress-fill" style="width:16%;"></div></div></div>
-              <div><div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span>Non-fiction</span><span style="color:var(--accent); font-weight:500;">12%</span></div><div class="progress-bar"><div class="progress-fill" style="width:12%;"></div></div></div>
-              <div><div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span>Children's</span><span style="color:var(--accent); font-weight:500;">10%</span></div><div class="progress-bar"><div class="progress-fill" style="width:10%;"></div></div></div>
-            </div>
-          </div>
-          <div class="card card-pad">
-            <h3 style="font-size:1rem; margin-bottom:1rem;">Member demographics</h3>
-            <div style="font-size:14px; display:flex; flex-direction:column; gap:10px;">
-              <div style="display:flex; justify-content:space-between; padding:8px; background:var(--paper-warm); border-radius:var(--radius);"><span>Students (13–24)</span><span class="badge badge-blue">38%</span></div>
-              <div style="display:flex; justify-content:space-between; padding:8px; background:var(--paper-warm); border-radius:var(--radius);"><span>Adults (25–54)</span><span class="badge badge-green">44%</span></div>
-              <div style="display:flex; justify-content:space-between; padding:8px; background:var(--paper-warm); border-radius:var(--radius);"><span>Seniors (55+)</span><span class="badge badge-gray">12%</span></div>
-              <div style="display:flex; justify-content:space-between; padding:8px; background:var(--paper-warm); border-radius:var(--radius);"><span>Children (under 13)</span><span class="badge badge-amber">6%</span></div>
-            </div>
-          </div>
-        </div>
-        <div style="margin-top:1.5rem; display:flex; gap:10px; flex-wrap:wrap;">
-          <button class="btn btn-outline" onclick="showToast('Monthly report downloaded as PDF.', 'success')"><i class="fas fa-download"></i> Monthly report (PDF)</button>
-          <button class="btn btn-outline" onclick="showToast('Members export downloaded as CSV.', 'success')"><i class="fas fa-file-csv"></i> Export members (CSV)</button>
-          <button class="btn btn-outline" onclick="showToast('Inventory export downloaded.', 'success')"><i class="fas fa-file-csv"></i> Export inventory (CSV)</button>
         </div>
       </div>
     </main>
   </div>
 </div>
+<!-- ================================ PAGE: TERMS ================================ -->
+<div id="page-terms" class="page">
+  <div class="section">
+    <h2 class="dash-title" style="font-size: 2rem; margin-bottom: 1rem; color: var(--accent);">Terms of Service</h2>
+    <div class="card card-pad">
+      <h3 style="margin-bottom: 0.5rem; color: var(--gold);">1. System Usage & Eligibility</h3>
+      <p style="color: var(--ink-soft); margin-bottom: 1.5rem;">Libralend is designed exclusively for the residents of Mandaluyong City and registered members of the Kaban ng Hiyas Library. Every member is strictly responsible for maintaining the confidentiality of their account credentials and for all activities that occur under their account.</p>
 
-<!-- ================================ BOOK MODAL ================================ -->
+      <h3 style="margin-bottom: 0.5rem; color: var(--gold);">2. Borrowing Policy & Limitations</h3>
+      <p style="color: var(--ink-soft); margin-bottom: 1.5rem;">A registered user may borrow a maximum of five (5) books at any given time. The standard loan period is fourteen (14) days. Users are permitted to renew a borrowed book once through the Libralend online portal, provided there are no pending hold requests from other members for that specific title.</p>
+
+      <h3 style="margin-bottom: 0.5rem; color: var(--gold);">3. Lost, Damaged, and Overdue Materials</h3>
+      <p style="color: var(--ink-soft); margin-bottom: 1.5rem;">Any physical library material that is damaged or lost while checked out must be reported immediately to the Kaban ng Hiyas library administration. Failure to return borrowed books on or before the due date will result in an automatic, temporary suspension of the user's borrowing privileges until the overdue items are returned.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================================ PAGE: PRIVACY ================================ -->
+<div id="page-privacy" class="page">
+  <div class="section">
+    <h2 class="dash-title" style="font-size: 2rem; margin-bottom: 1rem; color: var(--accent);">Privacy Policy</h2>
+    <div class="card card-pad">
+      <p style="color: var(--ink-soft); margin-bottom: 1.5rem; font-style: italic;">In compliance with the Data Privacy Act of 2012 (Republic Act No. 10173)</p>
+
+      <h3 style="margin-bottom: 0.5rem; color: var(--gold);">Information We Collect</h3>
+      <p style="color: var(--ink-soft); margin-bottom: 1.5rem;">To provide a seamless library lending experience, Libralend collects necessary personal information including your full name, email address, residential address, and system-generated reading history.</p>
+
+      <h3 style="margin-bottom: 0.5rem; color: var(--gold);">How We Use Your Data</h3>
+      <p style="color: var(--ink-soft); margin-bottom: 1.5rem;">The collected data is utilized strictly for account management, tracking borrowed materials, managing hold queues, and generating anonymous data analytics for our academic research (Thesis). Libralend will never sell, rent, or distribute your personal information to third-party entities.</p>
+
+      <h3 style="margin-bottom: 0.5rem; color: var(--gold);">Data Security</h3>
+      <p style="color: var(--ink-soft); margin-bottom: 1.5rem;">We implement standard technical and organizational security measures to protect your account and personal details against unauthorized access, alteration, disclosure, or destruction.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================================ PAGE: CONTACT ================================ -->
+<div id="page-contact" class="page">
+  <div class="section">
+    <h2 class="dash-title" style="font-size: 2rem; margin-bottom: 1rem; color: var(--accent);">Contact Support</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+      
+      <div class="card card-pad">
+        <h3 style="margin-bottom: 1rem; color: var(--gold);"><i class="fas fa-building" style="margin-right: 8px;"></i>Kaban ng Hiyas Congressional Library</h3>
+        <p style="color: var(--ink-soft); margin-bottom: 0.5rem;"><strong>Location:</strong> 2nd Floor, Kaban ng Hiyas Building, City Hall Compound, Mandaluyong City</p>
+        <p style="color: var(--ink-soft); margin-bottom: 0.5rem;"><strong>Email:</strong> kabannghiyaslibrary@yahoo.com</p>
+        <p style="color: var(--ink-soft); margin-bottom: 0.5rem;"><strong>Telephone:</strong> 748-0047 / 532-5001 loc 557</p>
+        <p style="color: var(--ink-soft); margin-top: 1.5rem; font-size: 13px;"><strong>Office Hours:</strong> Monday to Thursday, 8:00 AM to 5:00 PM (with a 12:00 NN to 1:00 PM lunch break).</p>
+      </div>
+
+      <div class="card card-pad" style="border-left: 4px solid var(--accent);">
+        <h3 style="margin-bottom: 1rem; color: var(--accent);"><i class="fas fa-laptop-code" style="margin-right: 8px;"></i>Libralend Technical Team</h3>
+        <p style="color: var(--ink-soft); margin-bottom: 1rem;">For system-related issues (bug reports, account recovery, or system errors), please contact the Polytechnic University of the Philippines (PUP) System Administrators:</p>
+        <ul style="color: var(--ink-soft); margin-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8;">
+          <li>Mark</li>
+          <li>Rymette</li>
+          <li>John Carlo</li>
+          <li>Nikki</li>
+          <li>Jahred</li>
+          <li>Drew</li>
+        </ul>
+        <button class="btn btn-primary" onclick="showToast('Message interface currently offline for maintenance.', 'error')"><i class="fas fa-envelope"></i> Message Admin Team</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 <div class="modal-overlay" id="book-modal">
   <div class="modal">
     <div class="modal-header">
-      <div>
-        <h3 id="modal-title">Add new book</h3>
-        <p style="font-size:13px; color:var(--ink-muted); margin-top:2px;" id="modal-sub">Fill in the book details below</p>
-      </div>
+      <h3>Add new book</h3>
       <button class="modal-close" onclick="closeModal('book-modal')">✕</button>
     </div>
     <div class="modal-body">
@@ -1297,54 +422,18 @@
         <div class="form-group"><label>Title *</label><input type="text" id="modal-book-title" /></div>
         <div class="form-group"><label>Author *</label><input type="text" id="modal-book-author" /></div>
       </div>
-      <div class="form-row">
-        <div class="form-group"><label>Genre</label>
-          <select id="modal-book-genre">
-            <option>Fiction</option><option>Non-fiction</option><option>Filipino Lit</option>
-            <option>Children's</option><option>History</option><option>Science</option>
-            <option>Self-Help</option><option>Mystery</option><option>Fantasy</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Year published</label><input type="number" id="modal-book-year" placeholder="e.g. 2023" /></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>ISBN</label><input type="text" id="modal-book-isbn" placeholder="978-..." /></div>
-        <div class="form-group"><label>Number of copies</label><input type="number" id="modal-book-copies" value="1" min="1" /></div>
-      </div>
-      <div class="form-group">
-        <label>Cover emoji (pick one that fits)</label>
-        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px;">
-          <span style="font-size:1.5rem; cursor:pointer; padding:4px; border-radius:6px; border:2px solid transparent;" onclick="selectEmoji(this)" class="emoji-opt selected">📘</span>
-          <span style="font-size:1.5rem; cursor:pointer; padding:4px; border-radius:6px; border:2px solid transparent;" onclick="selectEmoji(this)" class="emoji-opt">📙</span>
-          <span style="font-size:1.5rem; cursor:pointer; padding:4px; border-radius:6px; border:2px solid transparent;" onclick="selectEmoji(this)" class="emoji-opt">📗</span>
-          <span style="font-size:1.5rem; cursor:pointer; padding:4px; border-radius:6px; border:2px solid transparent;" onclick="selectEmoji(this)" class="emoji-opt">📕</span>
-          <span style="font-size:1.5rem; cursor:pointer; padding:4px; border-radius:6px; border:2px solid transparent;" onclick="selectEmoji(this)" class="emoji-opt">📓</span>
-          <span style="font-size:1.5rem; cursor:pointer; padding:4px; border-radius:6px; border:2px solid transparent;" onclick="selectEmoji(this)" class="emoji-opt">📔</span>
-          <span style="font-size:1.5rem; cursor:pointer; padding:4px; border-radius:6px; border:2px solid transparent;" onclick="selectEmoji(this)" class="emoji-opt">📒</span>
-          <span style="font-size:1.5rem; cursor:pointer; padding:4px; border-radius:6px; border:2px solid transparent;" onclick="selectEmoji(this)" class="emoji-opt">🏛️</span>
-          <span style="font-size:1.5rem; cursor:pointer; padding:4px; border-radius:6px; border:2px solid transparent;" onclick="selectEmoji(this)" class="emoji-opt">🌏</span>
-          <span style="font-size:1.5rem; cursor:pointer; padding:4px; border-radius:6px; border:2px solid transparent;" onclick="selectEmoji(this)" class="emoji-opt">🔬</span>
-          <span style="font-size:1.5rem; cursor:pointer; padding:4px; border-radius:6px; border:2px solid transparent;" onclick="selectEmoji(this)" class="emoji-opt">✨</span>
-          <span style="font-size:1.5rem; cursor:pointer; padding:4px; border-radius:6px; border:2px solid transparent;" onclick="selectEmoji(this)" class="emoji-opt">🧙</span>
-        </div>
-      </div>
-      <div class="form-group"><label>Description</label><textarea id="modal-book-desc" placeholder="Short synopsis or notes…"></textarea></div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-outline" onclick="closeModal('book-modal')">Cancel</button>
-      <button class="btn btn-primary" id="modal-save-btn" onclick="saveBook()">Add book</button>
+      <button class="btn btn-primary" onclick="saveBook()">Add book</button>
     </div>
   </div>
 </div>
 
-<!-- BORROW MODAL -->
 <div class="modal-overlay" id="borrow-modal">
   <div class="modal">
     <div class="modal-header">
-      <div>
-        <h3 id="borrow-book-title">Book title</h3>
-        <p style="font-size:13px; color:var(--ink-muted); margin-top:2px;" id="borrow-book-author">Author</p>
-      </div>
+      <h3 id="borrow-book-title">Book title</h3>
       <button class="modal-close" onclick="closeModal('borrow-modal')">✕</button>
     </div>
     <div class="modal-body" id="borrow-modal-body"></div>
@@ -1352,364 +441,6 @@
   </div>
 </div>
 
-<script>
-// ============================================================
-// DATA
-// ============================================================
-const BOOKS = [
-  { id:1, title:'Noli Me Tangere', author:'José Rizal', genre:'Filipino Lit', year:1887, copies:3, available:1, emoji:'📘', rating:4.9, desc:'A social novel that exposed the injustices of colonial rule in the Philippines.' },
-  { id:2, title:'El Filibusterismo', author:'José Rizal', genre:'Filipino Lit', year:1891, copies:2, available:0, emoji:'📕', rating:4.8, desc:'The sequel to Noli Me Tangere, depicting the rise of Filipino nationalism.' },
-  { id:3, title:'Florante at Laura', author:'Francisco Balagtas', genre:'Filipino Lit', year:1838, copies:4, available:2, emoji:'📙', rating:4.7, desc:'An epic awit poem set in the fictional kingdom of Albania.' },
-  { id:4, title:'Ibong Adarna', author:'Anonymous', genre:'Filipino Lit', year:1800, copies:3, available:3, emoji:'📗', rating:4.6, desc:'A classic Filipino narrative poem about a magical bird.' },
-  { id:5, title:'The Alchemist', author:'Paulo Coelho', genre:'Fiction', year:1988, copies:5, available:2, emoji:'✨', rating:4.7, desc:"A philosophical novel about a young shepherd's journey to find treasure." },
-  { id:6, title:'Sapiens', author:'Yuval Noah Harari', genre:'Non-fiction', year:2011, copies:3, available:1, emoji:'🌏', rating:4.5, desc:'A brief history of humankind from the Stone Age to the present.' },
-  { id:7, title:'Harry Potter & the Sorcerer\'s Stone', author:'J.K. Rowling', genre:'Fantasy', year:1997, copies:4, available:3, emoji:'🧙', rating:4.9, desc:'A young boy discovers he is a wizard and attends a school of magic.' },
-  { id:8, title:'Rich Dad Poor Dad', author:'Robert Kiyosaki', genre:'Self-Help', year:1997, copies:3, available:2, emoji:'📒', rating:4.2, desc:'A book about financial literacy and building wealth through investing.' },
-  { id:9, title:'Banaag at Sikat', author:'Lope K. Santos', genre:'Filipino Lit', year:1906, copies:2, available:0, emoji:'📔', rating:4.5, desc:'One of the first Filipino novels written in Tagalog.' },
-  { id:10, title:'Ang Mga Ibong Mandaragit', author:'Amado V. Hernandez', genre:'Filipino Lit', year:1969, copies:2, available:0, emoji:'📘', rating:4.7, desc:'A novel depicting the struggles of the Filipino working class.' },
-  { id:11, title:'One Hundred Years of Solitude', author:'Gabriel García Márquez', genre:'Fiction', year:1967, copies:2, available:2, emoji:'📕', rating:4.8, desc:'A landmark of magical realism following the Buendía family.' },
-  { id:12, title:'A Brief History of Time', author:'Stephen Hawking', genre:'Science', year:1988, copies:2, available:1, emoji:'🔬', rating:4.4, desc:'An accessible guide to the universe, time, and black holes.' },
-  { id:13, title:'The Joy Luck Club', author:'Amy Tan', genre:'Fiction', year:1989, copies:2, available:2, emoji:'📙', rating:4.3, desc:'Stories about Chinese immigrant women and their daughters.' },
-  { id:14, title:'Mga Kuwento ni Lola Basyang', author:'Severino Reyes', genre:'Children\'s', year:1925, copies:5, available:4, emoji:'📗', rating:4.8, desc:'Classic Filipino folk tales compiled by the Father of Philippine movies.' },
-  { id:15, title:'Sherlock Holmes', author:'Arthur Conan Doyle', genre:'Mystery', year:1892, copies:3, available:2, emoji:'📒', rating:4.6, desc:'The complete adventures of the world\'s greatest detective.' },
-];
-
-let editingBookId = null;
-let selectedEmoji = '📘';
-let currentUser = null;
-let books = [...BOOKS];
-
-// ============================================================
-// NAV
-// ============================================================
-function goTo(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + page).classList.add('active');
-  window.scrollTo(0, 0);
-}
-
-function scrollAbout() {
-  goTo('home');
-  setTimeout(() => {
-    document.getElementById('about-section').scrollIntoView({ behavior: 'smooth' });
-  }, 100);
-}
-
-// ============================================================
-// AUTH
-// ============================================================
-function doLogin() {
-  const u = document.getElementById('login-user').value.trim();
-  const p = document.getElementById('login-pass').value.trim();
-  if (!u || !p) { showToast('Please enter your username and password.', 'error'); return; }
-  currentUser = { name: u, firstName: u.split(' ')[0] || u, email: u + '@email.com', isAdmin: false };
-  setLoggedIn();
-  goTo('dashboard');
-  showToast('Welcome back, ' + currentUser.firstName + '!', 'success');
-}
-
-function doAdminLogin() {
-  currentUser = { name: 'Admin', firstName: 'Admin', email: 'admin@bayanihanlib.ph', isAdmin: true };
-  setLoggedIn();
-  goTo('admin');
-  showToast('Logged in as Administrator.', 'success');
-}
-
-function doRegister() {
-  const fname = document.getElementById('reg-fname').value.trim();
-  const lname = document.getElementById('reg-lname').value.trim();
-  const email = document.getElementById('reg-email').value.trim();
-  const uname = document.getElementById('reg-uname').value.trim();
-  if (!fname || !lname || !email || !uname) { showToast('Please fill in all required fields.', 'error'); return; }
-  currentUser = { name: fname + ' ' + lname, firstName: fname, email: email, isAdmin: false };
-  setLoggedIn();
-  goTo('dashboard');
-  showToast('Account created! Welcome, ' + fname + '!', 'success');
-}
-
-function setLoggedIn() {
-  document.getElementById('nav-guest').style.display = 'none';
-  document.getElementById('nav-user').style.display = 'flex';
-  const initials = currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2);
-  document.getElementById('navAvatar').textContent = initials;
-  document.getElementById('dashAvatar').textContent = initials;
-  document.getElementById('dashName').textContent = currentUser.name;
-  document.getElementById('dashEmail').textContent = currentUser.email;
-  document.getElementById('dashFirst').textContent = currentUser.firstName;
-  document.getElementById('prof-fname').value = currentUser.firstName;
-  document.getElementById('prof-lname').value = currentUser.name.split(' ')[1] || '';
-  document.getElementById('prof-email').value = currentUser.email;
-  if (currentUser.isAdmin) {
-    document.getElementById('adminNavBtn').style.display = '';
-  }
-}
-
-function logout() {
-  currentUser = null;
-  document.getElementById('nav-guest').style.display = 'flex';
-  document.getElementById('nav-user').style.display = 'none';
-  document.getElementById('adminNavBtn').style.display = 'none';
-  goTo('home');
-  showToast('You have been signed out.');
-}
-
-// ============================================================
-// CATALOG
-// ============================================================
-function renderCatalog(list) {
-  const grid = document.getElementById('book-grid');
-  const count = document.getElementById('catalog-count');
-  if (!list || list.length === 0) {
-    grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--ink-muted);"><i class="fas fa-search" style="font-size:2rem; margin-bottom:1rem; display:block;"></i>No books found matching your search.</div>';
-    count.textContent = '';
-    return;
-  }
-  count.textContent = list.length + ' book' + (list.length !== 1 ? 's' : '') + ' found';
-  const coverBg = { 'Filipino Lit':'#fff3e0','Fiction':'#e8f0fa','Fantasy':'#f3e8fd','Non-fiction':'#e8f5ee','Science':'#e3f2fd','Self-Help':'#fce4ec','Mystery':'#e8eaf6','Children\'s':'#fff8e1','History':'#f1f8e9' };
-  grid.innerHTML = list.map(b => {
-    const avail = b.available > 0;
-    return `<div class="book-card" onclick="openBookDetail(${b.id})">
-      <div class="book-cover" style="background:${coverBg[b.genre]||'#f5f5f5'}">
-        <span style="font-size:3.5rem;">${b.emoji}</span>
-        <span class="badge ${avail?'badge-green':'badge-red'} avail-badge">${avail?'Available':'Checked out'}</span>
-      </div>
-      <div class="book-info">
-        <h4>${b.title}</h4>
-        <p class="author">${b.author}</p>
-        <span class="badge badge-gray genre">${b.genre}</span>
-        <div class="book-rating">${'★'.repeat(Math.floor(b.rating))}${'☆'.repeat(5-Math.floor(b.rating))} ${b.rating}</div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function filterCatalog() {
-  const q = document.getElementById('catalog-search').value.toLowerCase();
-  const genre = document.getElementById('catalog-genre').value;
-  const avail = document.getElementById('catalog-avail').value;
-  const sort = document.getElementById('catalog-sort').value;
-  let list = books.filter(b => {
-    const matchQ = !q || b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q);
-    const matchG = !genre || b.genre === genre;
-    const matchA = !avail || (avail === 'available' ? b.available > 0 : b.available === 0);
-    return matchQ && matchG && matchA;
-  });
-  if (sort === 'author') list.sort((a,b) => a.author.localeCompare(b.author));
-  else if (sort === 'rating') list.sort((a,b) => b.rating - a.rating);
-  else if (sort === 'new') list.sort((a,b) => b.year - a.year);
-  else list.sort((a,b) => a.title.localeCompare(b.title));
-  renderCatalog(list);
-}
-
-function openBookDetail(id) {
-  const b = books.find(x => x.id === id);
-  if (!b) return;
-  const avail = b.available > 0;
-  document.getElementById('borrow-book-title').textContent = b.title;
-  document.getElementById('borrow-book-author').textContent = 'by ' + b.author + ' · ' + b.genre + ' · ' + b.year;
-  document.getElementById('borrow-modal-body').innerHTML = `
-    <div style="display:flex; gap:1.25rem; align-items:flex-start; margin-bottom:1.25rem; flex-wrap:wrap;">
-      <div style="font-size:5rem; width:90px; height:110px; background:var(--paper-warm); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; flex-shrink:0;">${b.emoji}</div>
-      <div style="flex:1;">
-        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
-          <span class="badge ${avail?'badge-green':'badge-red'}">${avail ? b.available+' cop'+(b.available>1?'ies':'y')+' available' : 'All copies checked out'}</span>
-          <span class="badge badge-gray">${b.copies} total cop${b.copies>1?'ies':'y'}</span>
-          <span class="badge badge-blue">${b.genre}</span>
-        </div>
-        <p style="font-size:14px; color:var(--ink-soft); line-height:1.7; margin-bottom:10px;">${b.desc}</p>
-        <div style="font-size:14px; color:var(--amber);">${'★'.repeat(Math.floor(b.rating))}${'☆'.repeat(5-Math.floor(b.rating))} <span style="color:var(--ink-muted);">${b.rating} · 12 reviews</span></div>
-      </div>
-    </div>
-    <div style="background:var(--paper-warm); border-radius:var(--radius); padding:1rem; font-size:13px; color:var(--ink-muted);">
-      <i class="fas fa-info-circle" style="color:var(--blue); margin-right:6px;"></i>
-      Loan period: 14 days. Renewable once. Max 5 books at a time.
-    </div>`;
-  document.getElementById('borrow-modal-footer').innerHTML = currentUser
-    ? (avail
-        ? `<button class="btn btn-outline" onclick="closeModal('borrow-modal')">Close</button>
-           <button class="btn btn-primary" onclick="borrowBook(${b.id})"><i class="fas fa-book"></i> Borrow this book</button>`
-        : `<button class="btn btn-outline" onclick="closeModal('borrow-modal')">Close</button>
-           <button class="btn btn-outline" onclick="addWishlist(${b.id})"><i class="fas fa-heart"></i> Add to wishlist</button>
-           <button class="btn btn-primary" onclick="placeHold(${b.id})"><i class="fas fa-clock"></i> Place hold</button>`)
-    : `<button class="btn btn-outline" onclick="closeModal('borrow-modal')">Close</button>
-       <button class="btn btn-primary" onclick="closeModal('borrow-modal'); goTo('login')"><i class="fas fa-sign-in-alt"></i> Sign in to borrow</button>`;
-  openModal('borrow-modal');
-}
-
-function borrowBook(id) {
-  const b = books.find(x => x.id === id);
-  if (b && b.available > 0) {
-    b.available--;
-    closeModal('borrow-modal');
-    showToast('Borrowed! Due in 14 days. Check your dashboard.', 'success');
-    filterCatalog();
-    renderAdminBooks();
-  }
-}
-
-function placeHold(id) {
-  closeModal('borrow-modal');
-  showToast('Hold placed! You\'ll be notified when it\'s available.', 'success');
-}
-
-function addWishlist(id) {
-  closeModal('borrow-modal');
-  showToast('Added to your wishlist!', 'success');
-}
-
-// ============================================================
-// ADMIN BOOKS
-// ============================================================
-function renderAdminBooks(filter) {
-  const tbody = document.getElementById('admin-book-tbody');
-  let list = filter ? books.filter(b => b.title.toLowerCase().includes(filter.toLowerCase()) || b.author.toLowerCase().includes(filter.toLowerCase())) : books;
-  tbody.innerHTML = list.map(b => `
-    <tr>
-      <td><strong>${b.title}</strong></td>
-      <td>${b.author}</td>
-      <td><span class="badge badge-gray">${b.genre}</span></td>
-      <td>${b.year}</td>
-      <td>${b.copies}</td>
-      <td>${b.available}</td>
-      <td><span class="badge ${b.available>0?'badge-green':'badge-red'}">${b.available>0?'Available':'Unavailable'}</span></td>
-      <td style="display:flex; gap:6px;">
-        <button class="btn btn-outline btn-sm" onclick="editBook(${b.id})"><i class="fas fa-edit"></i></button>
-        <button class="btn btn-danger btn-sm" onclick="deleteBook(${b.id})"><i class="fas fa-trash"></i></button>
-      </td>
-    </tr>`).join('');
-}
-
-function filterAdminBooks(val) {
-  renderAdminBooks(val || '');
-}
-
-function openBookModal(id) {
-  editingBookId = id || null;
-  selectedEmoji = '📘';
-  document.getElementById('modal-title').textContent = id ? 'Edit book' : 'Add new book';
-  document.getElementById('modal-sub').textContent = id ? 'Update the book details' : 'Fill in the book details below';
-  document.getElementById('modal-save-btn').textContent = id ? 'Save changes' : 'Add book';
-  if (id) {
-    const b = books.find(x => x.id === id);
-    document.getElementById('modal-book-title').value = b.title;
-    document.getElementById('modal-book-author').value = b.author;
-    document.getElementById('modal-book-genre').value = b.genre;
-    document.getElementById('modal-book-year').value = b.year;
-    document.getElementById('modal-book-copies').value = b.copies;
-    document.getElementById('modal-book-desc').value = b.desc;
-    document.getElementById('modal-book-isbn').value = '';
-    selectedEmoji = b.emoji;
-  } else {
-    ['modal-book-title','modal-book-author','modal-book-isbn','modal-book-desc'].forEach(f => document.getElementById(f).value = '');
-    document.getElementById('modal-book-year').value = '';
-    document.getElementById('modal-book-copies').value = '1';
-  }
-  document.querySelectorAll('.emoji-opt').forEach(e => { e.style.borderColor = 'transparent'; });
-  const first = document.querySelector('.emoji-opt');
-  if (first) first.style.borderColor = 'var(--accent)';
-  openModal('book-modal');
-}
-
-function editBook(id) { openBookModal(id); }
-
-function deleteBook(id) {
-  if (!confirm('Delete this book from the catalog? This cannot be undone.')) return;
-  books = books.filter(b => b.id !== id);
-  renderAdminBooks();
-  filterCatalog();
-  showToast('Book removed from catalog.', 'success');
-}
-
-function saveBook() {
-  const title = document.getElementById('modal-book-title').value.trim();
-  const author = document.getElementById('modal-book-author').value.trim();
-  if (!title || !author) { showToast('Title and author are required.', 'error'); return; }
-  if (editingBookId) {
-    const b = books.find(x => x.id === editingBookId);
-    b.title = title; b.author = author;
-    b.genre = document.getElementById('modal-book-genre').value;
-    b.year = parseInt(document.getElementById('modal-book-year').value) || b.year;
-    b.copies = parseInt(document.getElementById('modal-book-copies').value) || 1;
-    b.desc = document.getElementById('modal-book-desc').value;
-    b.emoji = selectedEmoji;
-    showToast('Book updated successfully.', 'success');
-  } else {
-    const newBook = {
-      id: Date.now(),
-      title, author,
-      genre: document.getElementById('modal-book-genre').value,
-      year: parseInt(document.getElementById('modal-book-year').value) || 2024,
-      copies: parseInt(document.getElementById('modal-book-copies').value) || 1,
-      available: parseInt(document.getElementById('modal-book-copies').value) || 1,
-      emoji: selectedEmoji,
-      rating: 0,
-      desc: document.getElementById('modal-book-desc').value
-    };
-    books.push(newBook);
-    showToast('Book "' + title + '" added to catalog!', 'success');
-  }
-  closeModal('book-modal');
-  renderAdminBooks();
-  filterCatalog();
-}
-
-function selectEmoji(el) {
-  document.querySelectorAll('.emoji-opt').forEach(e => e.style.borderColor = 'transparent');
-  el.style.borderColor = 'var(--accent)';
-  selectedEmoji = el.textContent;
-}
-
-// ============================================================
-// DASHBOARD SECTIONS
-// ============================================================
-function showDashSection(id) {
-  document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
-  const map = { 'ds-overview':'sn-overview','ds-borrowed':'sn-borrowed','ds-history':'sn-history','ds-holds':'sn-holds','ds-wishlist':'sn-wishlist','ds-reviews':'sn-reviews','ds-notifs':'sn-notifs','ds-profile':'sn-profile' };
-  const btn = document.getElementById(map[id]);
-  if (btn) btn.classList.add('active');
-}
-
-function showAdminSection(id) {
-  document.querySelectorAll('#page-admin .dash-section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('#page-admin .sidebar-nav a').forEach(a => a.classList.remove('active'));
-  const map = { 'as-overview':'asn-overview','as-books':'asn-books','as-borrowed':'asn-borrowed','as-members':'asn-members','as-holds':'asn-holds','as-reports':'asn-reports' };
-  const btn = document.getElementById(map[id]);
-  if (btn) btn.classList.add('active');
-  if (id === 'as-books') renderAdminBooks();
-}
-
-// ============================================================
-// MODALS
-// ============================================================
-function openModal(id) { document.getElementById(id).classList.add('open'); }
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-document.querySelectorAll('.modal-overlay').forEach(m => {
-  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
-});
-
-// ============================================================
-// TOAST
-// ============================================================
-let toastTimer;
-function showToast(msg, type) {
-  const t = document.getElementById('toast');
-  const m = document.getElementById('toast-msg');
-  t.className = '';
-  if (type) t.classList.add(type);
-  m.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
-}
-
-// ============================================================
-// INIT
-// ============================================================
-renderCatalog(books);
-renderAdminBooks();
-</script>
+<script src="script.js"></script>
 </body>
 </html>
